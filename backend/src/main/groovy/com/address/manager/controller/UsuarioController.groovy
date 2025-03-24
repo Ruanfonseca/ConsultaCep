@@ -1,36 +1,34 @@
-package com.address.manager.controller;
+package com.address.manager.controller
 
-import com.address.manager.entity.User
-import com.address.manager.record.UserDTO;
-import com.address.manager.service.UserService;
+import com.address.manager.entity.Usuario
+import com.address.manager.record.UsuarioDTO;
+import com.address.manager.service.UsuarioService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/user")
 @CrossOrigin(origins = "*")
-public class UserController {
+public class UsuarioController {
 
-    private final UserService service;
+    private final UsuarioService service;
 
-    public UserController(UserService service) {
+    public UsuarioController(UsuarioService service) {
         this.service = service;
     }
 
     @GetMapping
-    public List<UserDTO> getAllUsers() {
+    public List<UsuarioDTO> getAllUsers() {
         return service.getAllUsers();
     }
 
     @PostMapping
-    public ResponseEntity<UserDTO> saveUser(@RequestBody User user) {
+    public ResponseEntity<UsuarioDTO> saveUser(@RequestBody Usuario user) {
         return ResponseEntity.ok(service.saveUser(user));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody User user) {
+    public ResponseEntity<UsuarioDTO> updateUser(@PathVariable Long id, @RequestBody Usuario user) {
         return ResponseEntity.ok(service.updateUser(id, user));
     }
 

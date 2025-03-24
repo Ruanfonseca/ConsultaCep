@@ -1,0 +1,130 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { buscaEnderecoPorCep, deleteEndereco, editarEndereco } from "../api/api";
+import '../App.css';
+import { Button } from "../components/ui/button";
+import { Input } from "../components/ui/input";
+import { Endereco, EnderecoItemProps } from "../types/types";
+import { addressSchema } from "../types/validation";
+
+export function EnderecoItem({ Endereco, onEnderecoUpdated }: EnderecoItemProps) {
+    const [editable, setEditable] = useState(false);
+    const [data, setData] = useState(Endereco);
+    const [loading, setLoading] = useState(false);
+
+    const { register, setValue, formState: { errors } } = useForm<Endereco>({
+        resolver: zodResolver(addressSchema),
+        defaultValues: Endereco
+    });
+
+    useEffect(() => {
+        if (editable) {
+            setValue("rua", data.rua || "");
+            setValue("bairro", data.bairro || "");
+            setValue("cidade", data.cidade || "");
+            setValue("estado", data.estado || "");
+        }
+    }, [editable, data, setValue]);
+
+    const handleSave = async () => {
+        setLoading(true);
+        await editarEndereco(data.id!, data);
+        setLoading(false);
+        setEditable(false);
+        onEnderecoUpdated();
+    };
+
+    const handleDelete = async () => {
+        if (window.confirm("Tem certeza que deseja excluir este endereço?")) {
+            setLoading(true);
+            await deleteEndereco(data.id!);
+            setLoading(false);
+            onEnderecoUpdated();
+        }
+    };
+
+    const handleZipBlur = async (e: React.FocusEvent<HTMLInputElement>) => {
+        const cep = e.target.value;
+        if (cep.length === 8) {
+            setLoading(true);
+            const dados = await buscaEnderecoPorCep(cep);
+            if (dados) {
+                setData(prev => ({ ...prev, ...dados }));
+                setValue("rua", dados.rua || "");
+                setValue("bairro", dados.bairro || "");
+                setValue("cidade", dados.cidade || "");
+                setValue("estado", dados.estado || "");
+            }
+            setLoading(false);
+        }
+    };
+
+    return (
+        <div className="container-Item">
+            {editable ? (
+                <>
+                    <Input
+                        placeholder="Nome"
+                        value={data.nome}
+                        onChange={(e) => setData({ ...data, nome: e.target.value })}
+                        className="input sm-text-base"
+                    />
+                    <Input
+                        placeholder="CPF (000.000.000-00)"
+                        value={data.cpf}
+                        onChange={(e) => setData({ ...data, cpf: e.target.value })}
+                        className="input sm-text-base"
+                    />
+                    <Input
+                        placeholder="CEP"
+                        value={data.cep}
+                        onChange={(e) => setData({ ...data, cep: e.target.value })}
+                        className="input sm-text-base"
+                        onBlur={handleZipBlur}
+                    />
+
+                    <div className="col-span-2">
+                        <Input placeholder="Logradouro" {...register("rua")} disabled />
+                    </div>
+
+                    <div className="col-span-2 sm:col-span-1">
+                        <Input placeholder="Bairro" {...register("bairro")} disabled />
+                    </div>
+
+                    <div className="col-span-2 sm:col-span-1">
+                        <Input placeholder="Cidade" {...register("cidade")} disabled />
+                    </div>
+
+                    <div className="col-span-2 sm:col-span-1">
+                        <Input placeholder="Estado" {...register("estado")} disabled />
+                    </div>
+
+                    <div className="button-container">
+                        <Button onClick={handleSave} disabled={loading} className="button sm-w-auto">
+                            {loading ? "Salvando..." : "Salvar"}
+                        </Button>
+                        <Button variant="outline" onClick={() => setEditable(false)} className="button button-outline sm-w-auto">
+                            Cancelar
+                        </Button>
+                    </div>
+                </>
+            ) : (
+                <>
+                    <p className="text-sm"><strong>Nome:</strong> {Endereco.nome}</p>
+                    <p className="text-sm"><strong>CPF:</strong> {Endereco.cpf}</p>
+                    <p className="text-sm"><strong>CEP:</strong> {Endereco.cep}</p>
+
+                    <div className="button-container">
+                        <Button onClick={() => setEditable(true)} className="button sm-w-auto">
+                            Editar
+                        </Button>
+                        <Button variant="destructive" onClick={handleDelete} disabled={loading} className="button button-danger sm-w-auto">
+                            {loading ? "Excluindo..." : "Excluir"}
+                        </Button>
+                    </div>
+                </>
+            )}
+        </div>
+    );
+}

@@ -1,24 +1,24 @@
-export interface Address {
+export interface Endereco {
     id?: number;
-    name: string;
+    nome: string;
     cpf: string;
-    zipCode: string;
-    street: string;
-    neighborhood: string;
-    city: string;
-    state: string;
+    cep: string;
+    rua: string;
+    bairro: string;
+    cidade: string;
+    estado: string;
 }
 
-export interface AddressFormProps {
-    onAddressSaved: () => void;
+export interface EnderecoFormProps {
+    onEnderecoSalvo: () => void;
 }
 
-export interface AddressListProps {
-    addresses: Address[];
-    onAddressUpdated: () => void;
+export interface EnderecoListProps {
+    Enderecos: Endereco[];
+    onEnderecoUpdated: () => void;
 }
 
-export interface AddressItemProps {
-    address: Address;
-    onAddressUpdated: () => void;
+export interface EnderecoItemProps {
+    Endereco: Endereco;
+    onEnderecoUpdated: () => void;
 }

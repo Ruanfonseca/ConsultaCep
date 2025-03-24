@@ -1,19 +1,19 @@
 import './App.css';
 import { Card } from './components/ui/card';
-import { useAddresses } from './hook/hook';
-import { AddressForm } from './pages/AddressForm';
-import { AddressList } from './pages/AddressList';
+import { useEndereco } from './hook/hook';
+import { EnderecoForm } from './pages/EnderecoForm';
+import { EnderecoLista } from './pages/EnderecoLista';
 
 function App() {
-  const { addresses, setAddresses } = useAddresses();
+  const { enderecos, setEnderecos } = useEndereco();
 
   return (
     <div className="container-root">
       <Card className="card">
         <h1 className="title">Consulta de CEP e Gerenciamento de Endereços</h1>
         <div className="content">
-          <AddressForm onAddressSaved={() => setAddresses([...addresses])} />
-          <AddressList addresses={addresses} onAddressUpdated={() => setAddresses([...addresses])} />
+          <EnderecoForm onEnderecoSalvo={() => setEnderecos([...enderecos])} />
+          <EnderecoLista Enderecos={enderecos} onEnderecoUpdated={() => setEnderecos([...enderecos])} />
         </div>
       </Card>
     </div>

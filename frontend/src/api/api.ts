@@ -1,21 +1,21 @@
 import axios from 'axios';
-import { Address } from '../types/types';
+import { Endereco } from '../types/types';
 
 const API_URL = import.meta.env.VITE_API;
-const CEP = import.meta.env.VITE_API_CEP;
+const API_CEP = import.meta.env.VITE_API_CEP;
 
-export const fetchAddressByZip = async (zipCode: string): Promise<Partial<Address> | null> => {
+export const buscaEnderecoPorCep = async (cep: string): Promise<Partial<Endereco> | null> => {
     try {
         //integração com a api do cep
-        const response = await axios.get(`${CEP}${zipCode}/json/`);
+        const response = await axios.get(`${API_CEP}${cep}/json/`);
 
         if (response.data.erro) throw new Error("CEP inválido");
 
         return {
-            street: response.data.logradouro,
-            neighborhood: response.data.bairro,
-            city: response.data.localidade,
-            state: response.data.uf,
+            rua: response.data.logradouro,
+            bairro: response.data.bairro,
+            cidade: response.data.localidade,
+            estado: response.data.uf,
         };
 
     } catch (error) {
@@ -25,7 +25,7 @@ export const fetchAddressByZip = async (zipCode: string): Promise<Partial<Addres
 }
 
 //retornando um array de endereços do backend
-export const getAddresses = async (): Promise<Address[]> => {
+export const getEnderecos = async (): Promise<Endereco[]> => {
     try {
         const response = await axios.get(API_URL);
         return response.data;
@@ -36,7 +36,7 @@ export const getAddresses = async (): Promise<Address[]> => {
 };
 
 //salvando dados no backend
-export const saveAddress = async (data: Address): Promise<Address | null> => {
+export const salvarEndereco = async (data: Endereco): Promise<Endereco | null> => {
     try {
         const response = await axios.post(API_URL, data);
 
@@ -48,7 +48,7 @@ export const saveAddress = async (data: Address): Promise<Address | null> => {
 };
 
 //editando os endereços
-export const updateAddress = async (id: number, data: Address): Promise<Address | null> => {
+export const editarEndereco = async (id: number, data: Endereco): Promise<Endereco | null> => {
     try {
 
         const response = await axios.put(`${API_URL}/${id}`, data);
@@ -63,7 +63,7 @@ export const updateAddress = async (id: number, data: Address): Promise<Address 
 
 
 //editando os endereços
-export const deleteAddress = async (id: number): Promise<Address | null> => {
+export const deleteEndereco = async (id: number): Promise<Endereco | null> => {
     try {
 
         const response = await axios.delete(`${API_URL}/${id}`);

@@ -1,11 +1,14 @@
 import { z } from "zod";
+import { isValidCPF } from "../util/util";
 
 export const addressSchema = z.object({
-    name: z.string().min(3, "Digite o Nome"),
-    cpf: z.string().regex(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/, "CPF inválido"),
-    zipCode: z.string().length(8, "CEP inválido"),
-    street: z.string(),
-    neighborhood: z.string(),
-    city: z.string(),
-    state: z.string(),
+    nome: z.string().min(3, "Digite o Nome"),
+    cpf: z.string().refine(isValidCPF, {
+        message: "CPF inválido",
+    }),
+    cep: z.string().length(8, "CEP inválido"),
+    rua: z.string(),
+    bairro: z.string(),
+    cidade: z.string(),
+    estado: z.string(),
 });

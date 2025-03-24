@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
-import { Address } from "../types/types";
-import { getAddresses } from './../api/api';
+import { getEnderecos } from "../api/api";
+import { Endereco } from "../types/types";
 
-export const useAddresses = () => {
-    const [addresses, setAddresses] = useState<Address[]>([]);
+export const useEndereco = () => {
+    const [enderecos, setEnderecos] = useState<Endereco[]>([]);
 
     useEffect(() => {
-        const fetchAddress = async () => {
-            const data = await getAddresses();
-            setAddresses(data);
+        const carregaEnderecos = async () => {
+            const dados = await getEnderecos();
+            setEnderecos(dados);
         }
-        fetchAddress();
+        carregaEnderecos();
     }, []);
 
-    return { addresses, setAddresses };
+    return { enderecos, setEnderecos };
 }
 
