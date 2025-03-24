@@ -1,0 +1,31 @@
+# Usando uma imagem base do OpenJDK
+FROM openjdk:17-jdk-slim as build
+
+# Definindo o diretório de trabalho dentro do container
+WORKDIR /app
+
+# Copiando o arquivo build.gradle e gradle wrapper para o container
+COPY build.gradle gradlew settings.gradle /app/
+
+# Copiando as pastas gradle e src para o container
+COPY gradle /app/gradle
+COPY src /app/src
+
+# Definindo permissões e execute o Gradle para construir o JAR
+RUN chmod +x gradlew
+RUN ./gradlew build --no-daemon
+
+# Imagem base para a aplicação
+FROM openjdk:17-jdk-slim
+
+# Definindo o diretório de trabalho dentro do container
+WORKDIR /app
+
+# Copiando o JAR gerado da fase de build
+COPY --from=build /app/build/libs/*.jar /app/application.jar
+
+# Expondo a porta da aplicação (por padrão, a Spring Boot usa a porta 8080)
+EXPOSE 8080
+
+# Comando para executar a aplicação
+CMD ["java", "-jar", "application.jar"]

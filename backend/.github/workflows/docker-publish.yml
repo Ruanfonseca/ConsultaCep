@@ -1,0 +1,36 @@
+name: Carregando uma imagem do backend para o dockerhub
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout do repositório
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Configuração do Docker
+      - name: Configurando Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      #Logando no Docker Hub usando credenciais do GitHub Secrets
+      - name: Logando no Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      # Construindo a imagem Docker
+      - name: Construindo a imagem Docker
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/minha-aplicacao:${{ github.sha }} .
+
+      # Push da imagem para o Docker Hub
+      - name: Subindo o Docker image
+        run: |
+          docker push ${{ secrets.DOCKER_USERNAME }}/Sistema Consulta Cep:${{ github.sha }}
