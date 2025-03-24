@@ -25,6 +25,19 @@ public class UsuarioService {
         return convertToDTO(savedUser);
     }
 
+    List<UsuarioDTO> pesquisarEndereco(String dado, String tipo) {
+        switch (tipo) {
+            case "cpf":
+                return repository.findByCpf(dado)
+            case "cep":
+                return repository.findByCep(dado)
+            case "nome":
+                return repository.findByNome(dado)
+            default:
+                return []
+        }
+    }
+
     public UsuarioDTO updateUser(Long id, Usuario userDetails) {
         Usuario user = repository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
         user.setNome(userDetails.getNome());

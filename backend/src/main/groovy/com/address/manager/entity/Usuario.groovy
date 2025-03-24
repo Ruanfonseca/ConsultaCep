@@ -13,12 +13,13 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.PreUpdate
 import javax.persistence.Table
+import javax.persistence.UniqueConstraint
 import java.time.LocalDateTime
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "usuarios")
+@Table(name = "usuarios",uniqueConstraints = @UniqueConstraint(columnNames = "cpf"))
 class Usuario {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +28,7 @@ class Usuario {
         @Column(nullable = false)
         private String nome;
 
-        @Column(nullable = false)
+        @Column(nullable = false,unique = true)
         private String cpf;
 
         @Column(nullable = false, length = 8)

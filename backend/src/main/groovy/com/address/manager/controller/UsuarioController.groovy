@@ -1,7 +1,8 @@
 package com.address.manager.controller
 
 import com.address.manager.entity.Usuario
-import com.address.manager.record.UsuarioDTO;
+import com.address.manager.record.UsuarioDTO
+
 import com.address.manager.service.UsuarioService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*
@@ -20,6 +21,11 @@ public class UsuarioController {
     @GetMapping
     public List<UsuarioDTO> getAllUsers() {
         return service.getAllUsers();
+    }
+
+    @GetMapping
+    List<UsuarioDTO> pesquisarEndereco(@RequestParam String dado, @RequestParam String tipo) {
+        return service.pesquisarEndereco(dado, tipo)
     }
 
     @PostMapping

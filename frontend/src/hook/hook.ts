@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from "react";
-import { buscaEnderecoPorCep, getEnderecos } from "../api/api";
+import { buscaEnderecoPorCep, getEnderecos, pesquisaNoBanco } from "../api/api";
 import { Endereco } from "../types/types";
 
 
@@ -25,5 +25,15 @@ export const useBuscaEnderecoPorCep = (cep: string) => {
         queryKey: ['buscaEnderecoPorCep', cep],
         queryFn: () => buscaEnderecoPorCep(cep),
         enabled: !!cep,  // Só executa a função se o CEP for preenchido
+    });
+};
+
+
+export const usePesquisaEndereco = (dado: string) => {
+    return useQuery({
+        queryKey: ["enderecos", dado],
+        queryFn: () => pesquisaNoBanco(dado),
+        enabled: false,
+        retry: false, // Não tenta refazer a requisição em caso de erro
     });
 };

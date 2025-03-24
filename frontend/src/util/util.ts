@@ -28,3 +28,19 @@ export function formatCPF(value: string) {
         .replace(/(\d{3})(\d)/, "$1.$2")
         .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
 }
+
+export function detectarTipoDado(dado: string) {
+    const regexCPF = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/; // Formato: 000.000.000-00
+    const regexCEP = /^\d{5}-\d{3}$/; // Formato: 00000-000
+    const regexNome = /^[a-zA-ZÀ-ÿ\s]+$/; // Letras e espaços (considerando acentos)
+
+    if (regexCPF.test(dado)) {
+        return "cpf";
+    } else if (regexCEP.test(dado)) {
+        return "cep";
+    } else if (regexNome.test(dado)) {
+        return "nome";
+    } else {
+        return "desconhecido";
+    }
+};

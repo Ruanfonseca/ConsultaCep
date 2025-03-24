@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Endereco } from '../types/types';
+import { detectarTipoDado } from '../util/util';
 
 
 const API_URL = import.meta.env.VITE_API;
@@ -41,6 +42,28 @@ export const getEnderecos = async (): Promise<Endereco[]> => {
         return [];
     }
 };
+
+// Função para buscar no banco de dados
+export const pesquisaNoBanco = async (dado: string) => {
+    const tipoDado = detectarTipoDado(dado);
+
+    if (tipoDado === "desconhecido") {
+        alert("Dado inválido. Insira um CPF, CEP ou nome.");
+        return null;
+    }
+
+    try {
+        const response = await axios.get(API_URL, {
+            params: { dado, tipo: tipoDado }, // Enviando o tipo do dado para o backend
+        });
+
+        return response.data;
+    } catch (error) {
+        alert(`Erro ao retornar dados do banco: ${error}`);
+        return null;
+    }
+};
+
 
 //salvando dados no backend
 export const salvarEndereco = async (data: Endereco): Promise<Endereco | null> => {
