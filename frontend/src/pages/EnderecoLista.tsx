@@ -67,7 +67,7 @@ export function EnderecoLista({ onEnderecoUpdated }: EnderecoListProps) {
                     <p className="text-sm text-gray-600">Não há endereços cadastrados.</p>
                 )}
 
-                <div className="flex flex-wrap gap-2 justify-start mt-4">
+                <div className="flex flex-wrap gap-2 justify-center mt-4 w-full">
                     <Button onClick={handlePrintPDF} className="bg-blue-600 hover:bg-blue-700 text-white">
                         Imprimir PDF
                     </Button>

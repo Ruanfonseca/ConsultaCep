@@ -11,12 +11,12 @@ import org.springframework.stereotype.Repository
 interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     @Query("SELECT u FROM Usuario u WHERE u.cpf = :cpf")
-    List<UsuarioDTO> findByCpf(@Param("cpf") String cpf)
+    List<Usuario> findByCpf(@Param("cpf") String cpf)
 
     @Query("SELECT u FROM Usuario u WHERE u.cep = :cep")
-    List<UsuarioDTO> findByCep(@Param("cep") String cep)
+    List<Usuario> findByCep(@Param("cep") String cep)
 
     @Query("SELECT u FROM Usuario u WHERE LOWER(u.nome) LIKE LOWER(CONCAT('%', :nome, '%'))")
-    List<UsuarioDTO> findByNome(@Param("nome") String nome)
+    List<Usuario> findByNome(@Param("nome") String nome)
 
 }

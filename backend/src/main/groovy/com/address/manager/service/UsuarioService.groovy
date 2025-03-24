@@ -26,17 +26,34 @@ public class UsuarioService {
     }
 
     public List<UsuarioDTO> pesquisarEndereco(String dado, String tipo) {
+        List<UsuarioDTO> usuarioDTOList = new ArrayList<>();
+
         switch (tipo) {
             case "cpf":
-                return repository.findByCpf(dado)
+                List<Usuario> usuariosPorCpf = repository.findByCpf(dado);
+                usuarioDTOList = usuariosPorCpf.stream()
+                        .map(this::convertToDTO)
+                        .collect(Collectors.toList());
+                break;
             case "cep":
-                return repository.findByCep(dado)
+                List<Usuario> usuariosPorCep = repository.findByCep(dado);
+                usuarioDTOList = usuariosPorCep.stream()
+                        .map(this::convertToDTO)
+                        .collect(Collectors.toList());
+                break;
             case "nome":
-                return repository.findByNome(dado)
+                List<Usuario> usuariosPorNome = repository.findByNome(dado);
+                usuarioDTOList = usuariosPorNome.stream()
+                        .map(this::convertToDTO)
+                        .collect(Collectors.toList());
+                break;
             default:
-                return []
+                usuarioDTOList = new ArrayList<>();
         }
+
+        return usuarioDTOList;
     }
+
 
     public UsuarioDTO updateUser(Long id, Usuario userDetails) {
         Usuario user = repository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));

@@ -7,7 +7,7 @@ import './index.css';
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')!).render(
-
+  //https://consulta-cep.onrender.com/api/user
 
   <StrictMode>
     <QueryClientProvider client={queryClient}>

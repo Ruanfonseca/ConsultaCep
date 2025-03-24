@@ -7,14 +7,21 @@ import { Input } from "../components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../components/ui/table";
 import { usePesquisaEndereco } from "../hook/hook";
 import { Endereco } from "../types/types";
+import { aplicarMascara } from "../util/util";
 
 
 export default function EnderecoPesquisa() {
-    const { register, handleSubmit, watch } = useForm();
+    const { register, handleSubmit, watch, setValue } = useForm();
     const search = watch("search", ""); // Captura o valor do input
     const { data, isLoading, error, refetch } = usePesquisaEndereco(search);
 
-    const onSubmit = () => refetch(); // Dispara a pesquisa ao enviar o formulário
+    const onSubmit = () => refetch();
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const valor = e.target.value;
+        const valorComMascara = aplicarMascara(valor);
+        setValue("search", valorComMascara);
+    };
 
     return (
         <Dialog>
@@ -24,17 +31,17 @@ export default function EnderecoPesquisa() {
             <DialogContent className="max-w-4xl">
                 <DialogHeader>
                     <DialogTitle>Pesquisar Endereço</DialogTitle>
+
                 </DialogHeader>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="flex gap-2">
-                    <Input placeholder="Nome, CPF ou CEP" {...register("search")} />
+                    <Input placeholder="Nome, CPF ou CEP" {...register("search")} onChange={handleInputChange} />
                     <Button type="submit" disabled={isLoading}>Buscar</Button>
                 </form>
 
                 {isLoading && <p className="text-gray-500 text-center">Carregando...</p>}
                 {error && <p className="text-red-500 text-center">{(error as Error).message}</p>}
 
-                {/* Tabela de resultados */}
                 {data && data.length > 0 ? (
                     <Table>
                         <TableHeader>

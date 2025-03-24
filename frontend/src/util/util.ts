@@ -31,8 +31,9 @@ export function formatCPF(value: string) {
 
 export function detectarTipoDado(dado: string) {
     const regexCPF = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/; // Formato: 000.000.000-00
-    const regexCEP = /^\d{5}-\d{3}$/; // Formato: 00000-000
-    const regexNome = /^[a-zA-ZÀ-ÿ\s]+$/; // Letras e espaços (considerando acentos)
+    const regexCEP = /^\d{8}$/;
+    const regexNome = /^[a-zA-ZÀ-ÿ\s]+$/;
+
 
     if (regexCPF.test(dado)) {
         return "cpf";
@@ -42,5 +43,38 @@ export function detectarTipoDado(dado: string) {
         return "nome";
     } else {
         return "desconhecido";
+    }
+};
+
+
+// Função para identificar o tipo de dado (CPF, CEP ou nome)
+export function identificarTipo(dado: string) {
+    dado = dado.replace(/\D/g, ''); // Remove qualquer coisa que não seja número
+
+    const regexCPF = /^\d{11}$/; // 11 dígitos, sem pontos ou traços
+    const regexCEP = /^\d{8}$/;  // 8 dígitos, sem traço
+
+    if (regexCPF.test(dado)) {
+        return "cpf";
+    } else if (regexCEP.test(dado)) {
+        return "cep";
+    } else {
+        return "nome"; // Caso não seja CPF ou CEP, assume que é nome
+    }
+};
+
+// Função para aplicar a máscara de CPF
+export function aplicarMascaraCPF(cpf: string) {
+    return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+};
+
+
+// Função que vai ser chamada no onChange para aplicar as máscaras
+export function aplicarMascara(value: string) {
+    const tipo = identificarTipo(value);
+    if (tipo === 'cpf') {
+        return aplicarMascaraCPF(value);
+    } else {
+        return value; // Se não for CPF nem CEP, retorna o valor sem máscara
     }
 };
