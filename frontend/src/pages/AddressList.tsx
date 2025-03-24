@@ -1,3 +1,4 @@
+import jsPDF from "jspdf";
 import { useEffect, useState } from "react";
 import { getAddresses } from "../api/api";
 import { Card, CardContent } from "../components/ui/card";
@@ -12,10 +13,20 @@ export function AddressList({ onAddressUpdated }: AddressListProps) {
         setAddresses(data);
     };
 
-    // Chama a função de atualização de endereços sempre que onAddressUpdated for chamada
     useEffect(() => {
         fetchAddresses();
     }, [onAddressUpdated]);
+
+    const handlePrintPDF = () => {
+        const doc = new jsPDF();
+        doc.text("Lista de Endereços", 10, 10);
+
+        addresses.forEach((addr, index) => {
+            doc.text(`${index + 1}. ${addr.street}, ${addr.city} - ${addr.state}`, 10, 20 + index * 10);
+        });
+
+        doc.save("enderecos.pdf");
+    };
 
     return (
         <Card className="p-4 max-w-lg mx-auto mt-6">
@@ -32,6 +43,12 @@ export function AddressList({ onAddressUpdated }: AddressListProps) {
                 ) : (
                     <p>Não há endereços cadastrados.</p>
                 )}
+                <button
+                    onClick={handlePrintPDF}
+                    className="mt-4 p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                >
+                    Imprimir PDF
+                </button>
             </CardContent>
         </Card>
     );
