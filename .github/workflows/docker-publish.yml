@@ -28,7 +28,7 @@ jobs:
       # Construindo a imagem Docker
       - name: Construindo a imagem Docker
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/minha-aplicacao:${{ github.sha }} .
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/Sistema Consulta Cep:${{ github.sha }} .
 
       # Push da imagem para o Docker Hub
       - name: Subindo o Docker image
