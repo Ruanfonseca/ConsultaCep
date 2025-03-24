@@ -3,7 +3,7 @@ name: Carregando uma imagem do backend para o dockerhub
 on:
   push:
     branches:
-      - main/backend
+      - main
 
 jobs:
   build:
