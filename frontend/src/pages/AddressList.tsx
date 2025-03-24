@@ -1,6 +1,7 @@
 import jsPDF from "jspdf";
 import { useEffect, useState } from "react";
 import { getAddresses } from "../api/api";
+import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { Address, AddressListProps } from "../types/types";
 import { AddressItem } from "./AddressItem";
@@ -29,9 +30,12 @@ export function AddressList({ onAddressUpdated }: AddressListProps) {
     };
 
     return (
-        <Card className="p-4 max-w-lg mx-auto mt-6">
-            <CardContent>
-                <h2 className="text-xl font-bold mb-4">Endereços Salvos</h2>
+        <Card className="w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-4xl mx-auto my-2">
+            <CardContent className="p-4">
+                <h2 className="text-lg sm:text-xl font-bold mb-4 text-left">
+                    Endereços Salvos
+                </h2>
+
                 {addresses.length > 0 ? (
                     addresses.map((addr) => (
                         <AddressItem
@@ -41,15 +45,19 @@ export function AddressList({ onAddressUpdated }: AddressListProps) {
                         />
                     ))
                 ) : (
-                    <p>Não há endereços cadastrados.</p>
+                    <p className="text-sm text-gray-600">Não há endereços cadastrados.</p>
                 )}
-                <button
-                    onClick={handlePrintPDF}
-                    className="mt-4 p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                >
-                    Imprimir PDF
-                </button>
+
+                <div className="flex flex-wrap gap-2 justify-start mt-4">
+                    <Button onClick={handlePrintPDF} className="bg-blue-600 hover:bg-blue-700 text-white">
+                        Imprimir PDF
+                    </Button>
+                </div>
             </CardContent>
         </Card>
     );
+
+
+
+
 }

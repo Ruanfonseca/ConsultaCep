@@ -47,50 +47,73 @@ export function AddressForm({ onAddressSaved }: AddressFormProps) {
 
 
     return (
-        <>
-            <Card className="p-4 max-w-2xl mx-auto w-full">
-                <CardContent>
-                    <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="w-full flex items-start justify-center pt-6">
+            <Card className="p-4 w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-4xl mb-0">
+                <CardContent className="py-2">
+                    <form
+                        onSubmit={handleSubmit(onSubmit)}
+                        className="grid grid-cols-1 sm:grid-cols-2 gap-2"
+                    >
                         <div className="col-span-2">
                             <Input placeholder="Nome" {...register("name")} />
-                            {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
+                            {errors.name && (
+                                <p className="text-red-500 text-sm">{errors.name.message}</p>
+                            )}
                         </div>
 
-                        <div className="col-span-2 md:col-span-1">
+                        <div className="col-span-2 sm:col-span-1">
                             <Input placeholder="CPF (000.000.000-00)" {...register("cpf")} />
-                            {errors.cpf && <p className="text-red-500 text-sm">{errors.cpf.message}</p>}
+                            {errors.cpf && (
+                                <p className="text-red-500 text-sm">{errors.cpf.message}</p>
+                            )}
                         </div>
 
-                        <div className="col-span-2 md:col-span-1">
-                            <Input placeholder="CEP" {...register("zipCode")} onBlur={handleZipBlur} />
-                            {errors.zipCode && <p className="text-red-500 text-sm">{errors.zipCode.message}</p>}
+                        <div className="col-span-2 sm:col-span-1">
+                            <Input
+                                placeholder="CEP"
+                                {...register("zipCode")}
+                                onBlur={handleZipBlur}
+                            />
+                            {errors.zipCode && (
+                                <p className="text-red-500 text-sm">{errors.zipCode.message}</p>
+                            )}
                         </div>
 
                         <div className="col-span-2">
                             <Input placeholder="Logradouro" {...register("street")} disabled />
                         </div>
 
-                        <div className="col-span-2 md:col-span-1">
-                            <Input placeholder="Bairro" {...register("neighborhood")} disabled />
+                        <div className="col-span-2 sm:col-span-1">
+                            <Input
+                                placeholder="Bairro"
+                                {...register("neighborhood")}
+                                disabled
+                            />
                         </div>
 
-                        <div className="col-span-2 md:col-span-1">
+                        <div className="col-span-2 sm:col-span-1">
                             <Input placeholder="Cidade" {...register("city")} disabled />
                         </div>
 
-                        <div className="col-span-2 md:col-span-1">
+                        <div className="col-span-2 sm:col-span-1">
                             <Input placeholder="Estado" {...register("state")} disabled />
                         </div>
 
-                        <div className="col-span-2 flex justify-center">
-                            <Button type="submit" className="w-full md:w-auto" disabled={loading}>
+                        <div className="col-span-2 flex flex-col sm:flex-row justify-center gap-2">
+                            <Button
+                                type="submit"
+                                className="w-full sm:w-auto"
+                                disabled={loading}
+                            >
                                 {loading ? "Carregando..." : "Salvar"}
                             </Button>
                         </div>
                     </form>
                 </CardContent>
             </Card>
-
-        </>
+        </div>
     );
+
+
+
 }

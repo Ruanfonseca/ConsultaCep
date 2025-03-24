@@ -4,7 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.*
+import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor
@@ -16,14 +17,37 @@ public class User {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @Column(nullable = false)
   private String name;
+
   private String cpf;
+
+  @Column(nullable = false, length = 8)
   private String zipCode;
+
+  @Column(nullable = false)
+
   private String street;
+
+  @Column(nullable = false)
   private String neighborhood;
+
+  @Column(nullable = false)
   private String city;
+
+  @Column(nullable = false)
   private String state;
 
+  @Column(name = "data_criacao", nullable = false, updatable = false)
+  LocalDateTime creationDate = LocalDateTime.now()
+
+  @Column(name = "data_atualizacao")
+  LocalDateTime updateDate
+
+  @PreUpdate
+  protected void onUpdate() {
+    this.updateDate = LocalDateTime.now();
+  }
 
   public Long getId() {
     return id;

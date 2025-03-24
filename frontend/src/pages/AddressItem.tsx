@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { deleteAddress, updateAddress } from "../api/api";
+import '../App.css';
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { AddressItemProps } from "../types/types";
@@ -27,43 +28,48 @@ export function AddressItem({ address, onAddressUpdated }: AddressItemProps) {
     };
 
     return (
-        <div className="border-b p-4 flex flex-col gap-4">
+        <div className="container-Item">
             {editable ? (
                 <>
                     <Input
                         placeholder="Nome"
                         value={data.name}
                         onChange={(e) => setData({ ...data, name: e.target.value })}
+                        className="input sm-text-base"
                     />
                     <Input
                         placeholder="CPF (000.000.000-00)"
                         value={data.cpf}
                         onChange={(e) => setData({ ...data, cpf: e.target.value })}
+                        className="input sm-text-base"
                     />
                     <Input
                         placeholder="CEP"
                         value={data.zipCode}
                         onChange={(e) => setData({ ...data, zipCode: e.target.value })}
+                        className="input sm-text-base"
                     />
 
-                    <div className="flex flex-wrap gap-2 justify-between">
-                        <Button onClick={handleSave} disabled={loading}>
+                    <div className="button-container">
+                        <Button onClick={handleSave} disabled={loading} className="button sm-w-auto">
                             {loading ? "Salvando..." : "Salvar"}
                         </Button>
-                        <Button variant="outline" onClick={() => setEditable(false)}>
+                        <Button variant="outline" onClick={() => setEditable(false)} className="button button-outline sm-w-auto">
                             Cancelar
                         </Button>
                     </div>
                 </>
             ) : (
                 <>
-                    <p><strong>Nome:</strong> {address.name}</p>
-                    <p><strong>CPF:</strong> {address.cpf}</p>
-                    <p><strong>CEP:</strong> {address.zipCode}</p>
+                    <p className="text-sm"><strong>Nome:</strong> {address.name}</p>
+                    <p className="text-sm"><strong>CPF:</strong> {address.cpf}</p>
+                    <p className="text-sm"><strong>CEP:</strong> {address.zipCode}</p>
 
-                    <div className="flex flex-wrap gap-2 justify-between">
-                        <Button onClick={() => setEditable(true)}>Editar</Button>
-                        <Button variant="destructive" onClick={handleDelete} disabled={loading}>
+                    <div className="button-container">
+                        <Button onClick={() => setEditable(true)} className="button sm-w-auto">
+                            Editar
+                        </Button>
+                        <Button variant="destructive" onClick={handleDelete} disabled={loading} className="button button-danger sm-w-auto">
                             {loading ? "Excluindo..." : "Excluir"}
                         </Button>
                     </div>
@@ -71,4 +77,6 @@ export function AddressItem({ address, onAddressUpdated }: AddressItemProps) {
             )}
         </div>
     );
+
+
 }
