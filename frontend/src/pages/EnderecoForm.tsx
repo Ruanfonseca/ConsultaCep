@@ -1,10 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { buscaEnderecoPorCep, salvarEndereco } from "../api/api";
+import { salvarEndereco } from "../api/api";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { Input } from "../components/ui/input";
+import { useBuscaEnderecoPorCep } from "../hook/hook";
 import { Endereco, EnderecoFormProps } from "../types/types";
 import { addressSchema } from "../types/validation";
 
@@ -13,25 +14,18 @@ export function EnderecoForm({ onEnderecoSalvo }: EnderecoFormProps) {
     const { register, handleSubmit, setValue, formState: { errors } } = useForm<Endereco>({
         resolver: zodResolver(addressSchema),
     });
-
-
+    const [cep, setCep] = useState('');
+    const { data, isFetching } = useBuscaEnderecoPorCep(cep);
     const [loading, setLoading] = useState(false);
 
-
-    const handleBuscaAutomatica = async (e: React.FocusEvent<HTMLInputElement>) => {
-        const cep = e.target.value;
-        if (cep.length === 8) {
+    const handleBuscaAutomatica = (e: React.FocusEvent<HTMLInputElement>) => {
+        const aux = e.target.value;
+        if (aux.length === 8) {
             setLoading(true);
-            const data = await buscaEnderecoPorCep(cep);
-            if (data) {
-                setValue("rua", data.rua || "");
-                setValue("bairro", data.bairro || "");
-                setValue("cidade", data.cidade || "");
-                setValue("estado", data.estado || "");
-            }
-            setLoading(false);
+            setCep(aux);
         }
     };
+
 
     const onSubmit = async (data: Endereco) => {
         setLoading(true);
@@ -56,7 +50,15 @@ export function EnderecoForm({ onEnderecoSalvo }: EnderecoFormProps) {
         setValue("estado", "");
     };
 
-
+    useEffect(() => {
+        if (data) {
+            setValue("rua", data.rua || "");
+            setValue("bairro", data.bairro || "");
+            setValue("cidade", data.cidade || "");
+            setValue("estado", data.estado || "");
+            setLoading(false);
+        }
+    }, [data]);
     return (
         <div className="w-full flex items-start justify-center pt-6">
             <Card className="p-4 w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-4xl mb-0">
@@ -85,6 +87,7 @@ export function EnderecoForm({ onEnderecoSalvo }: EnderecoFormProps) {
                                 {...register("cep")}
                                 onBlur={handleBuscaAutomatica}
                             />
+                            {isFetching && <p>Buscando endereço...</p>}
                             {errors.cep && (
                                 <p className="text-red-500 text-sm">{errors.cep.message}</p>
                             )}

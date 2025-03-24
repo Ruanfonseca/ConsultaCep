@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { Endereco } from '../types/types';
 
+
 const API_URL = import.meta.env.VITE_API;
 const API_CEP = import.meta.env.VITE_API_CEP;
 
+// Função pura para busca de endereço
 export const buscaEnderecoPorCep = async (cep: string): Promise<Partial<Endereco> | null> => {
     try {
-        //integração com a api do cep
         const response = await axios.get(`${API_CEP}${cep}/json/`);
 
         if (response.data.erro) throw new Error("CEP inválido");
@@ -19,10 +20,16 @@ export const buscaEnderecoPorCep = async (cep: string): Promise<Partial<Endereco
         };
 
     } catch (error) {
-        alert(`Erro ao buscar o endereço:${error}`);
+        if (error instanceof Error) {
+            alert(`Erro ao buscar o endereço: ${error.message}`);
+        } else {
+            alert('Erro desconhecido ao buscar o endereço.');
+        }
         return null;
     }
-}
+};
+
+
 
 //retornando um array de endereços do backend
 export const getEnderecos = async (): Promise<Endereco[]> => {
