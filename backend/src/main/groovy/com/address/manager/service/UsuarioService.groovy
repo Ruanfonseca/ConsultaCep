@@ -25,7 +25,7 @@ public class UsuarioService {
         return convertToDTO(savedUser);
     }
 
-    List<UsuarioDTO> pesquisarEndereco(String dado, String tipo) {
+    public List<UsuarioDTO> pesquisarEndereco(String dado, String tipo) {
         switch (tipo) {
             case "cpf":
                 return repository.findByCpf(dado)

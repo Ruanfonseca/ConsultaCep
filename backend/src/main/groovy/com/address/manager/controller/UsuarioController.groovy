@@ -23,8 +23,8 @@ public class UsuarioController {
         return service.getAllUsers();
     }
 
-    @GetMapping
-    List<UsuarioDTO> pesquisarEndereco(@RequestParam String dado, @RequestParam String tipo) {
+    @GetMapping("/address")
+    public List<UsuarioDTO> pesquisarEndereco(@RequestParam String dado, @RequestParam String tipo) {
         return service.pesquisarEndereco(dado, tipo)
     }
 

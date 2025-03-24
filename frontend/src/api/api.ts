@@ -53,7 +53,7 @@ export const pesquisaNoBanco = async (dado: string) => {
     }
 
     try {
-        const response = await axios.get(API_URL, {
+        const response = await axios.get(`${API_URL}/address`, {
             params: { dado, tipo: tipoDado }, // Enviando o tipo do dado para o backend
         });
 

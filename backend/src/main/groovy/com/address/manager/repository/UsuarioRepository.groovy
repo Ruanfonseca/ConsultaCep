@@ -8,14 +8,15 @@ import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository
 
 @Repository
-interface UsuarioRepository extends JpaRepository<Usuario , Long> {
-    @Query("SELECT * FROM Usuario e WHERE e.cpf = :cpf")
+interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+
+    @Query("SELECT u FROM Usuario u WHERE u.cpf = :cpf")
     List<UsuarioDTO> findByCpf(@Param("cpf") String cpf)
 
-    @Query("SELECT * FROM Usuario e WHERE e.cep = :cep")
+    @Query("SELECT u FROM Usuario u WHERE u.cep = :cep")
     List<UsuarioDTO> findByCep(@Param("cep") String cep)
 
-    @Query("SELECT * FROM Usuario e WHERE LOWER(e.nome) LIKE LOWER(CONCAT('%', :nome, '%'))")
+    @Query("SELECT u FROM Usuario u WHERE LOWER(u.nome) LIKE LOWER(CONCAT('%', :nome, '%'))")
     List<UsuarioDTO> findByNome(@Param("nome") String nome)
 
 }
