@@ -20,3 +20,11 @@ export function isValidCPF(cpf: string): boolean {
 
     return digit1 === parseInt(cpf[9]) && digit2 === parseInt(cpf[10]);
 }
+
+export function formatCPF(value: string) {
+    return value
+        .replace(/\D/g, "") // Remove tudo que não for número
+        .replace(/(\d{3})(\d)/, "$1.$2")
+        .replace(/(\d{3})(\d)/, "$1.$2")
+        .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+}

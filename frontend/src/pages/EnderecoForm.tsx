@@ -8,6 +8,7 @@ import { Input } from "../components/ui/input";
 import { useBuscaEnderecoPorCep } from "../hook/hook";
 import { Endereco, EnderecoFormProps } from "../types/types";
 import { addressSchema } from "../types/validation";
+import { formatCPF } from "../util/util";
 
 export function EnderecoForm({ onEnderecoSalvo }: EnderecoFormProps) {
 
@@ -75,7 +76,19 @@ export function EnderecoForm({ onEnderecoSalvo }: EnderecoFormProps) {
                         </div>
 
                         <div className="col-span-2 sm:col-span-1">
-                            <Input placeholder="CPF (000.000.000-00)" {...register("cpf")} />
+                            <Input
+                                placeholder="CPF (000.000.000-00)"
+                                {...register("cpf", {
+                                    required: "CPF é obrigatório",
+                                    onChange: (e) => {
+                                        e.target.value = formatCPF(e.target.value);
+                                    },
+                                    pattern: {
+                                        value: /^\d{3}\.\d{3}\.\d{3}-\d{2}$/,
+                                        message: "CPF inválido",
+                                    },
+                                })}
+                            />
                             {errors.cpf && (
                                 <p className="text-red-500 text-sm">{errors.cpf.message}</p>
                             )}
@@ -116,11 +129,12 @@ export function EnderecoForm({ onEnderecoSalvo }: EnderecoFormProps) {
                         <div className="col-span-2 flex flex-col sm:flex-row justify-center gap-2">
                             <Button
                                 type="submit"
-                                className="w-full sm:w-auto"
+                                className="w-full sm:w-auto bg-black text-white"
                                 disabled={loading}
                             >
                                 {loading ? "Carregando..." : "Salvar"}
                             </Button>
+
                         </div>
                     </form>
                 </CardContent>
