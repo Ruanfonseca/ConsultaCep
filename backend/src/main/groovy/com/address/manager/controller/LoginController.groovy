@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
+import org.springframework.web.bind.annotation.RestController
+
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -23,15 +25,13 @@ public class LoginController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Map<String, String> request) {
-        String token = Service.login(request.email, request.senha)
+        String token = service.login(request.email, request.senha)
         return ResponseEntity.ok([token: token])
     }
 
     @PostMapping("/cadastro")
     public ResponseEntity<?> cadastro(@RequestBody Map<String, String> request) {
-        Service.cadastro(request.email, request.senha)
+        service.cadastro(request.email, request.senha)
         return ResponseEntity.ok([message: "Usuário cadastrado com sucesso!"])
     }
 }
-
-import org.springframework.web.bind.annotation.RestController
