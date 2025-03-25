@@ -2,6 +2,7 @@ package com.address.manager.security
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
@@ -26,7 +27,7 @@ class SecurityConfig {
                 .cors().configurationSource(corsConfigurationSource())
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/**", "/api/cadastro", "/api/login","/api/user/**","/api/user/address")
+                .antMatchers(HttpMethod.OPTIONS,"/api/**", "/api/cadastro", "/api/login","/api/user/**","/api/user/address")
                 .permitAll()
                 .anyRequest().authenticated()
 

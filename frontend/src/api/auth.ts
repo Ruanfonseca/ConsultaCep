@@ -8,12 +8,6 @@ export const login = async (email: string, senha: string) => {
         const response = await axios.post(
             `${API_URL}/api/login`,
             { email, senha },
-            {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                withCredentials: true,
-            }
         );
 
         // Se o status não for 200, lança um erro
