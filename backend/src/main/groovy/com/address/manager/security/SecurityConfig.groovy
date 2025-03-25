@@ -36,10 +36,10 @@ class SecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration()
-        configuration.setAllowedOrigins(List.of("https://consulta-cep-rosy-mu.vercel.app"))
+        configuration.setAllowedOrigins(List.of("*"))
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"))
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"))
-        configuration.setAllowCredentials(true) 
+        configuration.setAllowCredentials(true)
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource()
         source.registerCorsConfiguration("/**", configuration)
