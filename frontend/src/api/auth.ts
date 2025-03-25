@@ -5,9 +5,14 @@ const API_URL = import.meta.env.VITE_API;
 
 export const login = async (email: string, senha: string) => {
     try {
+        const data = {
+            email: email,
+            senha: senha
+        }
+
         const response = await axios.post(
             `${API_URL}/api/login`,
-            { email, senha },
+            data
         );
 
         // Se o status não for 200, lança um erro

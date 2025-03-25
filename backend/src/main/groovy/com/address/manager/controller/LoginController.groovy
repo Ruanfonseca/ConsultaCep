@@ -1,6 +1,7 @@
 package com.address.manager.controller
 
 import com.address.manager.service.LoginService
+import com.address.manager.service.UsuarioService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -9,14 +10,16 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
-import org.springframework.web.bind.annotation.RestController
-
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class LoginController {
-    @Autowired
-    LoginService Service
+
+    private final LoginService service;
+
+    public LoginController(LoginService service) {
+        this.service = service;
+    }
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Map<String, String> request) {
@@ -30,3 +33,5 @@ public class LoginController {
         return ResponseEntity.ok([message: "Usuário cadastrado com sucesso!"])
     }
 }
+
+import org.springframework.web.bind.annotation.RestController
