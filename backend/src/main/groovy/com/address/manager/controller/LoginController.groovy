@@ -14,18 +14,18 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api")
-class LoginController {
+public class LoginController {
     @Autowired
     LoginService Service
 
     @PostMapping("/login")
-    ResponseEntity<?> login(@RequestBody Map<String, String> request) {
+    public ResponseEntity<?> login(@RequestBody Map<String, String> request) {
         String token = Service.login(request.email, request.senha)
         return ResponseEntity.ok([token: token])
     }
 
     @PostMapping("/cadastro")
-    ResponseEntity<?> cadastro(@RequestBody Map<String, String> request) {
+    public ResponseEntity<?> cadastro(@RequestBody Map<String, String> request) {
         Service.cadastro(request.email, request.senha)
         return ResponseEntity.ok([message: "Usuário cadastrado com sucesso!"])
     }

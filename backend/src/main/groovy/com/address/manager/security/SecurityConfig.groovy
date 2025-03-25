@@ -26,7 +26,8 @@ class SecurityConfig {
                 .cors().configurationSource(corsConfigurationSource())
                 .and()
                 .authorizeRequests()
-                .antMatchers("/**","/api/login", "/api/cadastro","/api/user/**","/api/user/address").permitAll()
+                .antMatchers("/api/**", "/api/cadastro", "/api/login","/api/user/**","/api/user/address")
+                .permitAll()
                 .anyRequest().authenticated()
 
 

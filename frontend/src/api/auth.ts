@@ -6,7 +6,7 @@ const API_URL = import.meta.env.VITE_API;
 export const login = async (email: string, senha: string) => {
     try {
         const response = await axios.post(
-            `${API_URL}/login`,
+            `${API_URL}/api/login`,
             { email, senha },
             {
                 headers: {
@@ -36,7 +36,7 @@ export const login = async (email: string, senha: string) => {
 
 export const cadastro = async (email: string, senha: string) => {
     try {
-        const response = await axios.post(`${API_URL}/cadastro`, {
+        const response = await axios.post(`${API_URL}/api/cadastro`, {
             email,
             senha
         });
