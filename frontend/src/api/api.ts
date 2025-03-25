@@ -35,7 +35,7 @@ export const buscaEnderecoPorCep = async (cep: string): Promise<Partial<Endereco
 //retornando um array de endereços do backend
 export const getEnderecos = async (): Promise<Endereco[]> => {
     try {
-        const response = await axios.get(API_URL);
+        const response = await axios.get(`${API_URL}/api/user`);
         return response.data;
     } catch (error) {
         alert(`Erro ao retornar dados do banco:${error}`);
@@ -53,7 +53,7 @@ export const pesquisaNoBanco = async (dado: string) => {
     }
 
     try {
-        const response = await axios.get(`${API_URL}/address`, {
+        const response = await axios.get(`${API_URL}/api/user/address`, {
             params: { dado, tipo: tipoDado }, // Enviando o tipo do dado para o backend
         });
 
@@ -68,7 +68,7 @@ export const pesquisaNoBanco = async (dado: string) => {
 //salvando dados no backend
 export const salvarEndereco = async (data: Endereco): Promise<Endereco | null> => {
     try {
-        const response = await axios.post(API_URL, data);
+        const response = await axios.post(`${API_URL}/api/user/`, data);
 
         return response.data;
     } catch (error) {
@@ -81,7 +81,7 @@ export const salvarEndereco = async (data: Endereco): Promise<Endereco | null> =
 export const editarEndereco = async (id: number, data: Endereco): Promise<Endereco | null> => {
     try {
 
-        const response = await axios.put(`${API_URL}/${id}`, data);
+        const response = await axios.put(`${API_URL}/api/user/${id}`, data);
 
         return response.data;
 
@@ -96,7 +96,7 @@ export const editarEndereco = async (id: number, data: Endereco): Promise<Endere
 export const deleteEndereco = async (id: number): Promise<Endereco | null> => {
     try {
 
-        const response = await axios.delete(`${API_URL}/${id}`);
+        const response = await axios.delete(`${API_URL}/api/user/${id}`);
 
         return response.data;
 
@@ -105,3 +105,4 @@ export const deleteEndereco = async (id: number): Promise<Endereco | null> => {
         return null;
     }
 };
+

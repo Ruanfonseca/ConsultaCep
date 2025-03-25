@@ -1,24 +1,23 @@
+import { useState } from 'react';
+import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
-import { Card } from './components/ui/card';
-import { useEndereco } from './hook/hook';
-import { EnderecoForm } from './pages/EnderecoForm';
-import { EnderecoLista } from './pages/EnderecoLista';
-import EnderecoPesquisa from './pages/EnderecoPesquisa';
+import Cadastro from './pages/Cadastro/Cadastro';
+import Home from './pages/Home';
+import Login from './pages/Login/login';
+
 
 function App() {
-  const { enderecos, setEnderecos } = useEndereco();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
-    <div className="container-root">
-      <Card className="card">
-        <h1 className="title">Consulta de CEP e Gerenciamento de Endereços</h1>
-        <div className="content">
-          <EnderecoPesquisa />
-          <EnderecoForm onEnderecoSalvo={() => setEnderecos([...enderecos])} />
-          <EnderecoLista Enderecos={enderecos} onEnderecoUpdated={() => setEnderecos([...enderecos])} />
-        </div>
-      </Card>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/login" element={<Login onLogin={() => setIsAuthenticated(true)} />} />
+        <Route path="/home" element={isAuthenticated ? <Home /> : <Navigate to="/login" />} />
+        <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="*" element={<Navigate to="/login" />} />
+      </Routes>
+    </Router>
   );
 
 }

@@ -22,3 +22,21 @@ export interface EnderecoItemProps {
     Endereco: Endereco;
     onEnderecoUpdated: () => void;
 }
+
+export interface LoginCredentials {
+    email: string;
+    senha: string;
+}
+
+export interface LoginResponse {
+    token: string;
+}
+
+export interface CadastroCredentials {
+    email: string;
+    senha: string;
+}
+
+export interface CadastroResponse {
+    success: boolean; // Exemplo de um status de sucesso
+}

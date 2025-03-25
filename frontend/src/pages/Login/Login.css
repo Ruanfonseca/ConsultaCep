@@ -1,0 +1,89 @@
+/* Login.css */
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f4f4f4; /* Fundo cinza claro */
+}
+
+.no-bg {
+    background: none; /* Remove o fundo roxo */
+}
+
+.login-card {
+    padding: 2rem;
+    width: 350px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.login-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-label {
+    text-align: left;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.login-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.login-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.login-button,
+.register-button {
+    flex: 1;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Botão preto */
+.black {
+    background: black;
+    color: white;
+}
+
+.black:hover {
+    background: #333;
+}
+
+/* Botão vermelho */
+.red {
+    background: red;
+    color: white;
+}
+
+.red:hover {
+    background: darkred;
+}

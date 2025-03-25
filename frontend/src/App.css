@@ -188,6 +188,16 @@
   color: white;
 }
 
+
+.container-Item {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px; 
+  overflow: hidden;
+}
+
 .text-sm {
   font-size: 0.875rem;
 }
@@ -199,6 +209,7 @@
 .text-center {
   text-align: center;
 }
+
 
 /*******/
 

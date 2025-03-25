@@ -115,9 +115,11 @@ export function EnderecoItem({ Endereco, onEnderecoUpdated }: EnderecoItemProps)
                 </>
             ) : (
                 <>
-                    <p className="text-sm"><strong>Nome:</strong> {Endereco.nome}</p>
-                    <p className="text-sm"><strong>CPF:</strong> {Endereco.cpf}</p>
-                    <p className="text-sm"><strong>CEP:</strong> {Endereco.cep}</p>
+                    <div className="container-Item">
+                        <p className="text-sm"><strong>Nome:</strong> {Endereco.nome}</p>
+                        <p className="text-sm"><strong>CPF:</strong> {Endereco.cpf}</p>
+                        <p className="text-sm"><strong>CEP:</strong> {Endereco.cep}</p>
+                    </div>
 
                     <div className="button-container">
                         <Button onClick={() => setEditable(true)} className="button sm-w-auto  bg-black text-white">
