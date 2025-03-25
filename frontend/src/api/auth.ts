@@ -3,23 +3,33 @@ import axios from 'axios';
 const API_URL = import.meta.env.VITE_API;
 
 
-
 export const login = async (email: string, senha: string) => {
     try {
-        const response = await axios.post(`${API_URL}/login`, {
-            email,
-            senha
-        });
+        const response = await axios.post(
+            `${API_URL}/login`,
+            { email, senha },
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                withCredentials: true,
+            }
+        );
 
-        // Verifica se o status da resposta é 200 e se contém o token
-        if (response.data.token) {
-            return response.data.token; // Retorna o token recebido
+        // Se o status não for 200, lança um erro
+        if (response.status !== 200) {
+            throw new Error(`Erro no login: ${response.status}`);
         }
 
-        throw new Error('Login failed');
+        // Garante que um token foi retornado
+        if (!response.data || !response.data.token) {
+            throw new Error("Token não recebido");
+        }
+
+        return response.data.token;
     } catch (error) {
-        console.error('Erro ao fazer login:', error);
-        throw error; // Relança o erro para ser tratado no lugar onde a função for chamada
+        console.error("Erro ao fazer login:", error);
+        throw error;
     }
 };
 
