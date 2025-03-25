@@ -26,7 +26,7 @@ class SecurityConfig {
                 .cors().configurationSource(corsConfigurationSource())
                 .and()
                 .authorizeRequests()
-                .antMatchers("/login", "/cadastro","/api/user/**","/api/user/address").permitAll()
+                .antMatchers("/**","/api/login", "/api/cadastro","/api/user/**","/api/user/address").permitAll()
                 .anyRequest().authenticated()
 
 
@@ -44,7 +44,7 @@ class SecurityConfig {
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
 
         configuration.setAllowCredentials(true);
-        
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
 
