@@ -22,7 +22,7 @@ export default function Login({ onLogin }: LoginProps) {
         login(
             { email, senha },
             {
-                onSuccess: (data) => {
+                onSuccess: () => {
                     setLoading(false);
                     onLogin();
                     navigate("/home");
