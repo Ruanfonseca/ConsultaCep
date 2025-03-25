@@ -11,20 +11,24 @@ interface LoginProps {
 export default function Login({ onLogin }: LoginProps) {
     const [email, setEmail] = useState<string>('');
     const [senha, setSenha] = useState<string>('');
+    const [loading, setLoading] = useState<boolean>(false);
     const navigate = useNavigate();
     const { mutate: login } = useLogin();
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
+        setLoading(true);
 
         login(
             { email, senha },
             {
                 onSuccess: (data) => {
+                    setLoading(false);
                     onLogin();
                     navigate("/home");
                 },
                 onError: () => {
+                    setLoading(false);
                     alert("Credenciais inválidas");
                 },
             }
@@ -45,11 +49,14 @@ export default function Login({ onLogin }: LoginProps) {
                     <label className="login-label">Senha:</label>
                     <input className="login-input" type="password" value={senha} onChange={(e) => setSenha(e.target.value)} required />
                     <div className="login-buttons">
-                        <button className="login-button black" type="submit">Entrar</button>
+                        <button className="login-button black" type="submit" disabled={loading}>
+                            {loading ? "Entrando..." : "Entrar"}
+                        </button>
                         <button
                             className="register-button red"
                             type="button"
                             onClick={handleRegisterClick}
+                            disabled={loading}
                         >
                             Cadastrar
                         </button>

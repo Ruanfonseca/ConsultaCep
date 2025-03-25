@@ -41,19 +41,19 @@ export function EnderecoLista({ onEnderecoUpdated }: EnderecoListProps) {
                 `   Cidade: ${addr.cidade} - ${addr.estado}\n` +
                 `   CEP: ${addr.cep}\n`,
                 10,
-                20 + index * 30 // Ajusta a posição para evitar sobreposição
+                20 + index * 50
             );
         });
-
         doc.save("enderecos.pdf");
     };
 
     return (
         <Card className="w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-4xl mx-auto my-2">
             <CardContent className="p-4">
-                <h2 className="text-lg sm:text-xl font-bold mb-4 text-left">
+                <h2 className="text-lg sm:text-xl font-bold mb-4 text-center">
                     Endereços Salvos
                 </h2>
+
 
                 {enderecos.length > 0 ? (
                     enderecos.map((addr) => (

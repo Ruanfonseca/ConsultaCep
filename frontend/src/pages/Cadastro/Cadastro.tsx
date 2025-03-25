@@ -9,6 +9,7 @@ export default function Cadastro() {
     const [senha, setSenha] = useState<string>('');
     const [confirmPassword, setConfirmPassword] = useState<string>('');
     const [error, setError] = useState<string>('');
+    const [loading, setLoading] = useState<boolean>(false);
     const navigate = useNavigate();
     const { mutate: cadastrar } = useCadastro();
 
@@ -20,14 +21,17 @@ export default function Cadastro() {
             return;
         }
 
+        setLoading(true);
         cadastrar(
             { email, senha },
             {
                 onSuccess: () => {
+                    setLoading(false);
                     alert('Cadastro realizado com sucesso!');
                     navigate('/login');
                 },
                 onError: () => {
+                    setLoading(false);
                     setError('Erro ao cadastrar. Tente novamente.');
                 },
             }
@@ -64,7 +68,9 @@ export default function Cadastro() {
                         required
                     />
                     {error && <p className="cadastro-error">{error}</p>}
-                    <button className="cadastro-button" type="submit">Cadastrar</button>
+                    <button className="cadastro-button" type="submit" disabled={loading}>
+                        {loading ? "Cadastrando..." : "Cadastrar"}
+                    </button>
                 </form>
             </Card>
         </div>

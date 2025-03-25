@@ -5,11 +5,11 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: #f4f4f4; /* Fundo cinza claro */
+    background: #f4f4f4;
 }
 
 .no-bg {
-    background: none; /* Remove o fundo roxo */
+    background: none; 
 }
 
 .login-card {
@@ -86,4 +86,50 @@
 
 .red:hover {
     background: darkred;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .login-card {
+        width: 90%;
+        padding: 1.5rem;
+    }
+
+    .login-title {
+        font-size: 1.5rem;
+    }
+
+    .login-input {
+        font-size: 0.9rem;
+    }
+
+    .login-button, .register-button {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-card {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .login-title {
+        font-size: 1.3rem;
+    }
+
+    .login-input {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    .login-buttons {
+        flex-direction: column;
+    }
+
+    .login-button, .register-button {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
 }

@@ -51,10 +51,9 @@
     margin-bottom: 10px;
 }
 
-/* Botões com fundo preto e vermelho */
 .cadastro-button {
     padding: 10px;
-    background: #000; /* Fundo preto */
+    background: #000; 
     color: white;
     border: none;
     border-radius: 6px;
@@ -65,13 +64,13 @@
 }
 
 .cadastro-button:hover {
-    background: #444; /* Cor de fundo preta mais suave para o hover */
+    background: #444; 
 }
 
-/* Botão de 'Cadastrar' em vermelho */
+
 .register-button {
     padding: 10px;
-    background: #e74c3c; /* Fundo vermelho */
+    background: #e74c3c;
     color: white;
     border: none;
     border-radius: 6px;
@@ -82,5 +81,47 @@
 }
 
 .register-button:hover {
-    background: #c0392b; /* Cor de fundo vermelha mais suave para o hover */
+    background: #c0392b; 
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .cadastro-card {
+        width: 90%;
+        padding: 1.5rem;
+    }
+
+    .cadastro-title {
+        font-size: 1.5rem;
+    }
+
+    .cadastro-input {
+        font-size: 0.9rem;
+    }
+
+    .cadastro-button, .register-button {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cadastro-card {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .cadastro-title {
+        font-size: 1.3rem;
+    }
+
+    .cadastro-input {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    .cadastro-button, .register-button {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
 }
