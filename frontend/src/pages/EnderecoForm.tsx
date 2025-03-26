@@ -96,7 +96,7 @@ export function EnderecoForm({ onEnderecoSalvo }: EnderecoFormProps) {
 
                         <div className="col-span-2 sm:col-span-1">
                             <Input
-                                placeholder="CEP"
+                                placeholder="CEP(00000000)"
                                 {...register("cep")}
                                 onBlur={handleBuscaAutomatica}
                             />
