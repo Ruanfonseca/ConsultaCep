@@ -28,17 +28,27 @@ class JwtFilter extends OncePerRequestFilter {
     @Override
     void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
-        String token = request.getHeader("Authorization")?.replace("Bearer ", "")
+
+        String requestURI = request.getRequestURI();
+
+        if (requestURI.startsWith("/api/login") || requestURI.startsWith("/api/cadastro")) {
+            chain.doFilter(request, response);
+            return;
+        }
+
+        String token = request.getHeader("Authorization")?.replace("Bearer ", "");
 
         if (token && jwtUtil.validateToken(token)) {
-            String email = jwtUtil.extractEmail(token)
+            String email = jwtUtil.extractEmail(token);
             Repository.findByEmail(email).ifPresent { login ->
-                UserDetails loginDetails = login.withUsername(login.email).password(login.password).roles("LOGIN").build()
-                UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(loginDetails, null, loginDetails.authorities)
-                auth.details = new WebAuthenticationDetailsSource().buildDetails(request)
-                SecurityContextHolder.context.authentication = auth
+                UserDetails loginDetails = login.withUsername(login.email).password(login.password).roles("LOGIN").build();
+                UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(loginDetails, null, loginDetails.authorities);
+                auth.details = new WebAuthenticationDetailsSource().buildDetails(request);
+                SecurityContextHolder.context.authentication = auth;
             }
         }
-        chain.doFilter(request, response)
+
+        chain.doFilter(request, response);
     }
+
 }

@@ -16,7 +16,7 @@ class SecurityConfig {
                 .cors().and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/**").permitAll()
+                .antMatchers("/api/login", "/api/cadastro").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -28,7 +28,7 @@ class SecurityConfig {
     CorsFilter corsFilter() {
         def source = new UrlBasedCorsConfigurationSource()
         def config = new CorsConfiguration()
-        config.addAllowedOrigin("*") /
+        config.addAllowedOrigin("*")
         config.addAllowedMethod("*")
         config.addAllowedHeader("*")
         source.registerCorsConfiguration("/**", config)
