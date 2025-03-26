@@ -2,20 +2,16 @@ package com.address.manager.service
 
 import com.address.manager.entity.Login
 import com.address.manager.repository.LoginRepository
-import com.address.manager.security.JwtUtil
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 @Service
 class LoginService{
 
     private final LoginRepository repository
-    private final JwtUtil jwtUtil
     private final BCryptPasswordEncoder passwordEncoder
 
-    LoginService(LoginRepository repository, JwtUtil jwtUtil) {
+    LoginService(LoginRepository repository) {
         this.repository = repository
-        this.jwtUtil = jwtUtil
         this.passwordEncoder = new BCryptPasswordEncoder()
     }
 
@@ -30,7 +26,7 @@ class LoginService{
             throw new RuntimeException("Senha inválida")
         }
 
-        return jwtUtil.generateToken(email)
+        return email;
     }
 
 
