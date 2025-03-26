@@ -55,8 +55,11 @@ e o groovy na versão
 e clone o backend em sua maquina , durante o desenvolvimento foi utilizado o intellij como IDE.
 
 Para utilizar a imagem do backend basta fazer um 
-1)docker pull (docker pull ruanfonseca2023/consulta-cep:bea5380f8cfdddaa682b39ee4022b8d51c198093) ;
+
+1)docker pull (docker pull ruanfonseca2023/consulta-cep:bea5380f8cfdddaa682b39ee4022b8d51c198093) 
+
 2)docker build -t nome-da-imagem .
+
 3)docker run -d -p 8080:8080 nome-da-imagem
 
 
