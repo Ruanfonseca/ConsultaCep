@@ -27,9 +27,10 @@ class SecurityConfig {
                 .cors().configurationSource(corsConfigurationSource())
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.OPTIONS,"/api/**", "/api/cadastro", "/api/login","/api/user/**","/api/user/address")
-                .permitAll()
+                .ignoringRequestMatchers("/api/login","/api/cadastro")
+                 .requestMatchers(HttpMethod.OPTIONS, "/api/**", "/api/cadastro", "/api/login", "/api/user/**", "/api/user/address").permitAll()
                 .anyRequest().authenticated()
+               
 
 
         return http.build()
@@ -43,7 +44,7 @@ class SecurityConfig {
 
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 
-        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "Origin", "Accept", "X-Requested-With"));
 
         configuration.setAllowCredentials(true);
 
