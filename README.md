@@ -73,7 +73,7 @@ e clone o backend em sua maquina , durante o desenvolvimento foi utilizado o int
 
 Para utilizar a imagem do backend basta fazer um 
 
-1) docker pull (docker pull ruanfonseca2023/consulta-cep:bea5380f8cfdddaa682b39ee4022b8d51c198093) 
+1) docker pull (docker pull ruanfonseca2023/consulta-cep:512b19133b63d9ccffb9efa2ab4467b49da2f84e) 
 
 2) docker build -t nome-da-imagem .
 
