@@ -119,6 +119,10 @@ export function EnderecoItem({ Endereco, onEnderecoUpdated }: EnderecoItemProps)
                         <p className="text-sm"><strong>Nome:</strong> {Endereco.nome}</p>
                         <p className="text-sm"><strong>CPF:</strong> {Endereco.cpf}</p>
                         <p className="text-sm"><strong>CEP:</strong> {Endereco.cep}</p>
+                        <p className="text-sm"><strong>Logradouro:</strong> {Endereco.rua}</p>
+                        <p className="text-sm"><strong>Estado:</strong> {Endereco.estado}</p>
+                        <p className="text-sm"><strong>Bairro:</strong> {Endereco.bairro}</p>
+                        <p className="text-sm"><strong>Cidade:</strong> {Endereco.cidade}</p>
                     </div>
 
                     <div className="button-container">

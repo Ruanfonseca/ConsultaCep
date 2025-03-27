@@ -194,12 +194,16 @@
   padding: 8px;
   display: flex;
   flex-direction: column;
-  gap: 16px; 
+  gap: 16px;
   overflow: hidden;
+  align-items: center; 
+  text-align: justify;  
+  width: 100%; 
 }
 
 .text-sm {
   font-size: 0.875rem;
+  width: 100%; 
 }
 
 .text-base {

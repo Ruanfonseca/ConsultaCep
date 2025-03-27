@@ -88,7 +88,8 @@ a url da api para usar a local.
 
 
 Como utilizar o projeto em produção 
-O render em seu plano gratuito coloca uma latencia 50 segundos a cada requisição, então , se a requisição demorar um é por conta dessa regra da hospedagem.
+
+O render em seu plano gratuito coloca uma latencia 50 segundos a cada requisição, então , se a requisição demorar um pouco é por conta dessa regra da hospedagem.
 
 clique no link -> https://consulta-cep-rosy-mu.vercel.app
 
