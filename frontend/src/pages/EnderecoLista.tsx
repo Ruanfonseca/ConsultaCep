@@ -1,11 +1,11 @@
 import jsPDF from "jspdf";
 import { useEffect, useState } from "react";
 import { getEnderecos } from "../api/api";
+import '../App.css';
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { Endereco, EnderecoListProps } from "../types/types";
 import { EnderecoItem } from "./EnderecoItem";
-
 
 export function EnderecoLista({ onEnderecoUpdated }: EnderecoListProps) {
     const [enderecos, setEnderecos] = useState<Endereco[]>([]);
@@ -68,7 +68,7 @@ export function EnderecoLista({ onEnderecoUpdated }: EnderecoListProps) {
                 )}
 
                 <div className="flex flex-wrap gap-2 justify-center mt-4 w-full">
-                    <Button onClick={handlePrintPDF} className="bg-blue-600 hover:bg-blue-700 text-white">
+                    <Button onClick={handlePrintPDF} className="custom-button">
                         Imprimir PDF
                     </Button>
                 </div>

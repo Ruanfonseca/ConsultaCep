@@ -105,10 +105,10 @@ export function EnderecoItem({ Endereco, onEnderecoUpdated }: EnderecoItemProps)
                     </div>
 
                     <div className="button-container">
-                        <Button onClick={handleSave} disabled={loading} className="button sm-w-auto">
+                        <Button onClick={handleSave} disabled={loading} className="button sm-w-auto custom-button">
                             {loading ? "Salvando..." : "Salvar"}
                         </Button>
-                        <Button variant="outline" onClick={() => setEditable(false)} className="button button-outline w-full sm:w-auto bg-black text-white">
+                        <Button variant="outline" onClick={() => setEditable(false)} className="button button-outline w-full sm:w-auto custom-button">
                             Cancelar
                         </Button>
                     </div>
@@ -126,7 +126,7 @@ export function EnderecoItem({ Endereco, onEnderecoUpdated }: EnderecoItemProps)
                     </div>
 
                     <div className="button-container">
-                        <Button onClick={() => setEditable(true)} className="button sm-w-auto  bg-black text-white">
+                        <Button onClick={() => setEditable(true)} className="custom-button">
                             Editar
                         </Button>
                         <Button variant="destructive" onClick={handleDelete} disabled={loading} className="button button-danger sm-w-auto ">

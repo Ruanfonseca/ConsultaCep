@@ -2,6 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { salvarEndereco } from "../api/api";
+import '../App.css';
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { Input } from "../components/ui/input";
@@ -9,6 +10,7 @@ import { useBuscaEnderecoPorCep } from "../hook/hook";
 import { Endereco, EnderecoFormProps } from "../types/types";
 import { addressSchema } from "../types/validation";
 import { formatCPF } from "../util/util";
+
 
 export function EnderecoForm({ onEnderecoSalvo }: EnderecoFormProps) {
 
@@ -129,7 +131,7 @@ export function EnderecoForm({ onEnderecoSalvo }: EnderecoFormProps) {
                         <div className="col-span-2 flex flex-col sm:flex-row justify-center gap-2">
                             <Button
                                 type="submit"
-                                className="w-full sm:w-auto bg-black text-white"
+                                className="w-full sm:w-auto custom-button"
                                 disabled={loading}
                             >
                                 {loading ? "Carregando..." : "Salvar"}

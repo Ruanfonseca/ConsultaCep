@@ -121,7 +121,21 @@
   }
 }
 
+.custom-button {
+  background-color: #000;  
+  color: #fff;             
+  border: none;            
+  padding: 12px 24px;      
+  border-radius: 8px;      
+  font-size: 16px;         
+  cursor: pointer;        
+  transition: background-color 0.3s ease;
+}
 
+.custom-button:disabled {
+  background-color: #555;  
+  cursor: not-allowed;    
+}
 /***-******/
 
 

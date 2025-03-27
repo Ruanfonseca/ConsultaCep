@@ -31,7 +31,7 @@ export default function EnderecoPesquisa() {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button variant="default">Pesquisar</Button>
+                <Button className="custom-button" variant="default">Pesquisar</Button>
             </DialogTrigger>
 
             <DialogContent className="dialog-content">
@@ -45,7 +45,7 @@ export default function EnderecoPesquisa() {
                         {...register("search")}
                         onChange={handleInputChange}
                     />
-                    <Button type="submit" disabled={isLoading}>
+                    <Button type="submit" className="custom-button" disabled={isLoading}>
                         Buscar
                     </Button>
                 </form>
