@@ -73,13 +73,37 @@ e clone o backend em sua maquina , durante o desenvolvimento foi utilizado o int
 
 Para utilizar a imagem do backend basta fazer um 
 
-1)docker pull (docker pull ruanfonseca2023/consulta-cep:bea5380f8cfdddaa682b39ee4022b8d51c198093) 
+1) docker pull (docker pull ruanfonseca2023/consulta-cep:bea5380f8cfdddaa682b39ee4022b8d51c198093) 
 
-2)docker build -t nome-da-imagem .
+2) docker build -t nome-da-imagem .
 
-3)docker run -d -p 8080:8080 nome-da-imagem
+3) docker run -d -p 8080:8080 nome-da-imagem
 
+Utilizando o mysql com docker 
 
+1) Intale o mysql - (docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=meubanco -e MYSQL_USER=usuario -e MYSQL_PASSWORD=senha -p 3306:3306 -d mysql:latest)
+
+2) Utilize esse composer - version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql-container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: meubanco
+      MYSQL_USER: usuario
+      MYSQL_PASSWORD: senha
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
+
+Subindo o composer (docker-compose up -d)
 
 
 Para rodar o frontend , necessário utilizar o "react": "^19.0.0", clone o frontend , digite npm install para instalação das dependências e altere em(api.ts e auth.ts) 
