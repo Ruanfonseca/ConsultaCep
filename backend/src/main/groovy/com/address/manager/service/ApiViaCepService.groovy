@@ -1,6 +1,7 @@
 package com.address.manager.service
 
 import com.address.manager.record.DadosCEPDTO
+import com.address.manager.util.CepUtils
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
@@ -8,15 +9,14 @@ import org.springframework.web.client.RestTemplate
 @Service
 class ApiViaCepService {
     private final String VIACEP_URL = "https://viacep.com.br/ws/%s/json/"
-    String regex = /^\d{8}$|^\d{5}-\d{3}$/
+    CepUtils util;
+
+    String regex = /^\d{8}$/
 
     /**
      * Consulta o CEP na API do ViaCEP
      */
     DadosCEPDTO consultarCEP(String cep) {
-        if (!cep.matches(regex)) {
-            throw new IllegalArgumentException("Erro! O CEP deve ter exatamente 8 dígitos sem pontos ou traços.")
-        }
 
         String url = String.format(VIACEP_URL, cep)
         RestTemplate template = new RestTemplate()

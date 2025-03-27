@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 export function isValidCPF(cpf: string): boolean {
     cpf = cpf.replace(/[.-]/g, "");
     if (!/^[0-9]{11}$/.test(cpf)) return false;
@@ -25,6 +26,7 @@ export function isValidCEP(cep: string): boolean {
     return /^[0-9]{8}$/.test(cep);
 }
 
+
 export function formatCPF(value: string) {
     return value
         .replace(/\D/g, "") // Remove tudo que não for número
@@ -36,13 +38,13 @@ export function formatCPF(value: string) {
 export function formatCEP(value: string) {
     return value
         .replace(/\D/g, "")
-        .replace(/^(\d{5})(\d{1,3})$/, "$1-$2"); // Formata para XXXXX-XXX
+        .replace(/^(\d{5})(\d{1,3})$/, "$1-$2");
 }
 
 
 export function detectarTipoDado(dado: string) {
-    const regexCPF = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/; // Formato: 000.000.000-00
-    const regexCEP = /^\d{8}$|^\d{5}-\d{3}$/;
+    const regexCPF = /^\d{11}$/;
+    const regexCEP = /^\d{8}$/;
     const regexNome = /^[a-zA-ZÀ-ÿ\s]+$/;
 
 
@@ -58,21 +60,18 @@ export function detectarTipoDado(dado: string) {
 };
 
 
-// Função para identificar o tipo de dado (CPF, CEP ou nome)
 export function identificarTipo(dado: string) {
-    dado = dado.replace(/\D/g, ''); // Remove qualquer coisa que não seja número
 
-    const regexCPF = /^\d{11}$/; // 11 dígitos, sem pontos ou traços
-    const regexCEP = /^\d{8}$/;  // 8 dígitos, sem traço
-
-    if (regexCPF.test(dado)) {
+    if (dado.length === 11) {
         return "cpf";
-    } else if (regexCEP.test(dado)) {
+    } else if (dado.length === 8) {
         return "cep";
     } else {
-        return "nome"; // Caso não seja CPF ou CEP, assume que é nome
+        return "nome";
     }
-};
+}
+
+
 
 // Função para aplicar a máscara de CPF
 export function aplicarMascaraCPF(cpf: string) {

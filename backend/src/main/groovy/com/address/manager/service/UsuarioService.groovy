@@ -2,7 +2,8 @@ package com.address.manager.service
 
 import com.address.manager.entity.Usuario;
 import com.address.manager.record.UsuarioDTO;
-import com.address.manager.repository.UsuarioRepository;
+import com.address.manager.repository.UsuarioRepository
+import com.address.manager.util.CepUtils;
 import org.springframework.stereotype.Service
 
 import java.util.stream.Collectors;
@@ -21,6 +22,7 @@ public class UsuarioService {
     }
 
     public UsuarioDTO saveUser(Usuario user) {
+        user.setCep(CepUtils.limparCep(user.getCep()))
         Usuario savedUser = repository.save(user);
         return convertToDTO(savedUser);
     }
@@ -40,6 +42,7 @@ public class UsuarioService {
                 def viaCepService = new ApiViaCepService()
 
                 if(viaCepService.cepExiste(dado)){
+                    dado = CepUtils.limparCep(dado);
                     List<Usuario> usuariosPorCep = repository.findByCep(dado);
                     usuarioDTOList = usuariosPorCep.stream()
                             .map(this::convertToDTO)
@@ -67,7 +70,7 @@ public class UsuarioService {
         Usuario user = repository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
         user.setNome(userDetails.getNome());
         user.setCpf(userDetails.getCpf());
-        user.setCep(userDetails.getCep());
+        user.setCep(CepUtils.limparCep(userDetails.getCep()))
         user.setRua(userDetails.getRua());
         user.setBairro(userDetails.getBairro());
         user.setCidade(userDetails.getCidade());

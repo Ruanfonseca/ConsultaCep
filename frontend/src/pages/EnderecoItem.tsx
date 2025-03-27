@@ -47,7 +47,8 @@ export function EnderecoItem({ Endereco, onEnderecoUpdated }: EnderecoItemProps)
 
     const handleZipBlur = async (e: React.FocusEvent<HTMLInputElement>) => {
         const cep = e.target.value;
-        if (cep.length === 8) {
+
+        if (cep) {
             setLoading(true);
             const dados = await buscaEnderecoPorCep(cep);
             if (dados) {

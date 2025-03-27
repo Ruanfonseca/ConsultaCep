@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios';
 import { Endereco } from '../types/types';
 import { detectarTipoDado } from '../util/util';
@@ -45,6 +46,7 @@ export const getEnderecos = async (): Promise<Endereco[]> => {
 
 // Função para buscar no banco de dados
 export const pesquisaNoBanco = async (dado: string) => {
+    console.log(dado)
     const tipoDado = detectarTipoDado(dado);
 
     if (tipoDado === "desconhecido") {
@@ -58,11 +60,20 @@ export const pesquisaNoBanco = async (dado: string) => {
         });
 
         return response.data;
-    } catch (error) {
-        alert(`Erro ao retornar dados do banco: ${error}`);
+    } catch (error: any) {
+        if (error.response && error.response.status === 500) {
+            if (error.response.data?.message?.includes("Duplicate entry")) {
+                alert("Erro: Já existe um registro com esse dado no sistema.");
+            } else {
+                alert(`Erro ao retornar dados do banco: ${error.response.data?.message || "Erro desconhecido"}`);
+            }
+        } else {
+            alert(`Erro ao retornar dados do banco: ${error.message}`);
+        }
         return null;
     }
 };
+
 
 
 //salvando dados no backend

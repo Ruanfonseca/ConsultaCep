@@ -12,7 +12,7 @@ import {
 import { Input } from "../components/ui/input";
 import { usePesquisaEndereco } from "../hook/hook";
 import { Endereco } from "../types/types";
-import { aplicarMascara } from "../util/util";
+import { aplicarMascara, formatCEP, formatCPF } from "../util/util";
 import './css/endereco-pesquisa.css';
 
 export default function EnderecoPesquisa() {
@@ -20,12 +20,15 @@ export default function EnderecoPesquisa() {
     const search = watch("search", "");
     const { data, isLoading, error, refetch } = usePesquisaEndereco(search);
 
-    const onSubmit = () => refetch();
+    const onSubmit = () => {
+        const searchComMascara = aplicarMascara(search);
+        setValue("search", searchComMascara);
+        refetch();
+    };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const valor = e.target.value;
-        const valorComMascara = aplicarMascara(valor);
-        setValue("search", valorComMascara);
+        setValue("search", valor);
     };
 
     return (
@@ -75,8 +78,8 @@ export default function EnderecoPesquisa() {
                                 {data.map((endereco: Endereco) => (
                                     <tr key={endereco.id}>
                                         <td>{endereco.nome}</td>
-                                        <td>{endereco.cpf}</td>
-                                        <td>{endereco.cep}</td>
+                                        <td>{formatCPF(endereco.cpf)}</td>
+                                        <td>{formatCEP(endereco.cep)}</td>
                                         <td>{endereco.rua}</td>
                                         <td>{endereco.bairro}</td>
                                         <td>{endereco.cidade}</td>

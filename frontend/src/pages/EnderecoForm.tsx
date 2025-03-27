@@ -23,7 +23,6 @@ export function EnderecoForm({ onEnderecoSalvo }: EnderecoFormProps) {
 
     const handleBuscaAutomatica = (e: React.FocusEvent<HTMLInputElement>) => {
         const aux = e.target.value;
-
         if (aux) {
             setLoading(true);
             setCep(aux);
@@ -35,7 +34,6 @@ export function EnderecoForm({ onEnderecoSalvo }: EnderecoFormProps) {
         setLoading(true);
         try {
             await salvarEndereco(data);
-            console.log("Endereço salvo com sucesso!");
             onEnderecoSalvo();
             limparFormulario();
         } catch (error) {

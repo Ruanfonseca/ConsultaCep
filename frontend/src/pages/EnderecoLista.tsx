@@ -6,6 +6,7 @@ import '../App.css';
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { Endereco, EnderecoListProps } from "../types/types";
+import { formatCEP, formatCPF } from "../util/util";
 import { EnderecoItem } from "./EnderecoItem";
 
 export function EnderecoLista({ onEnderecoUpdated }: EnderecoListProps) {
@@ -38,10 +39,10 @@ export function EnderecoLista({ onEnderecoUpdated }: EnderecoListProps) {
         enderecos.forEach((addr, index) => {
             doc.text(
                 `${index + 1}. Nome: ${addr.nome}\n` +
-                `   CPF: ${addr.cpf}\n` +
+                `   CPF: ${formatCPF(addr.cpf)}\n` +
                 `   Rua: ${addr.rua}\n` +
                 `   Cidade: ${addr.cidade} - ${addr.estado}\n` +
-                `   CEP: ${addr.cep}\n`,
+                `   CEP: ${formatCEP(addr.cep)}\n`,
                 10,
                 20 + index * 50
             );
