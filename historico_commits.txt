@@ -82,10 +82,12 @@ corringindo responsividade do dialog com css e corrigindo a função que gera pd
 criando telas de login e cadastro , criando logica de autenticação com jwt no backend d7ca555
 ----------------------------------------------------------------------------------------------
 Mar 26,2025
+Criando a integração do backend com api do viacep,para consulta e validação do cep e corrigindo estilização do componente
+EnderecoLista. 6e19060
 
-melhorando a descrição do uso mysql com docker
+melhorando a descrição do uso mysql com docker 197e329
 
-Corrigindo alinhamento dos elementos da lista no frontend 
+Corrigindo alinhamento dos elementos da lista no frontend 2b5eb23
 
 Criando histórico de commit be765f0
 
