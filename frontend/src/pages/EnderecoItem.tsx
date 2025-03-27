@@ -7,6 +7,7 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Endereco, EnderecoItemProps } from "../types/types";
 import { addressSchema } from "../types/validation";
+import { formatCEP } from "../util/util";
 
 export function EnderecoItem({ Endereco, onEnderecoUpdated }: EnderecoItemProps) {
     const [editable, setEditable] = useState(false);
@@ -79,7 +80,7 @@ export function EnderecoItem({ Endereco, onEnderecoUpdated }: EnderecoItemProps)
                     <Input
                         placeholder="CEP"
                         value={data.cep}
-                        onChange={(e) => setData({ ...data, cep: e.target.value })}
+                        onChange={(e) => setData({ ...data, cep: formatCEP(e.target.value) })}
                         className="input sm-text-base"
                         onBlur={handleZipBlur}
                     />
@@ -108,7 +109,7 @@ export function EnderecoItem({ Endereco, onEnderecoUpdated }: EnderecoItemProps)
                         <Button onClick={handleSave} disabled={loading} className="button sm-w-auto custom-button">
                             {loading ? "Salvando..." : "Salvar"}
                         </Button>
-                        <Button variant="outline" onClick={() => setEditable(false)} className="button button-outline w-full sm:w-auto custom-button">
+                        <Button onClick={() => setEditable(false)} className="button  w-full sm:w-auto custom-button">
                             Cancelar
                         </Button>
                     </div>
@@ -118,7 +119,7 @@ export function EnderecoItem({ Endereco, onEnderecoUpdated }: EnderecoItemProps)
                     <div className="container-Item">
                         <p className="text-sm"><strong>Nome:</strong> {Endereco.nome}</p>
                         <p className="text-sm"><strong>CPF:</strong> {Endereco.cpf}</p>
-                        <p className="text-sm"><strong>CEP:</strong> {Endereco.cep}</p>
+                        <p className="text-sm"><strong>CEP:</strong> {formatCEP(Endereco.cep)}</p>
                         <p className="text-sm"><strong>Logradouro:</strong> {Endereco.rua}</p>
                         <p className="text-sm"><strong>Estado:</strong> {Endereco.estado}</p>
                         <p className="text-sm"><strong>Bairro:</strong> {Endereco.bairro}</p>
@@ -129,7 +130,7 @@ export function EnderecoItem({ Endereco, onEnderecoUpdated }: EnderecoItemProps)
                         <Button onClick={() => setEditable(true)} className="custom-button">
                             Editar
                         </Button>
-                        <Button variant="destructive" onClick={handleDelete} disabled={loading} className="button button-danger sm-w-auto ">
+                        <Button variant="destructive" onClick={handleDelete} disabled={loading} className="button  button-danger sm-w-auto ">
                             {loading ? "Excluindo..." : "Excluir"}
                         </Button>
                     </div>

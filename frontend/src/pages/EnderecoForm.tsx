@@ -9,7 +9,7 @@ import { Input } from "../components/ui/input";
 import { useBuscaEnderecoPorCep } from "../hook/hook";
 import { Endereco, EnderecoFormProps } from "../types/types";
 import { addressSchema } from "../types/validation";
-import { formatCPF } from "../util/util";
+import { formatCEP, formatCPF } from "../util/util";
 
 
 export function EnderecoForm({ onEnderecoSalvo }: EnderecoFormProps) {
@@ -23,7 +23,8 @@ export function EnderecoForm({ onEnderecoSalvo }: EnderecoFormProps) {
 
     const handleBuscaAutomatica = (e: React.FocusEvent<HTMLInputElement>) => {
         const aux = e.target.value;
-        if (aux.length === 8) {
+
+        if (aux) {
             setLoading(true);
             setCep(aux);
         }
@@ -98,8 +99,12 @@ export function EnderecoForm({ onEnderecoSalvo }: EnderecoFormProps) {
 
                         <div className="col-span-2 sm:col-span-1">
                             <Input
-                                placeholder="CEP(00000000)"
+                                placeholder="CEP(00000-000)"
                                 {...register("cep")}
+                                onChange={(e) => {
+                                    const formattedCep = formatCEP(e.target.value);
+                                    setValue("cep", formattedCep);
+                                }}
                                 onBlur={handleBuscaAutomatica}
                             />
                             {isFetching && <p>Buscando endereço...</p>}

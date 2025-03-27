@@ -1,5 +1,6 @@
 import jsPDF from "jspdf";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getEnderecos } from "../api/api";
 import '../App.css';
 import { Button } from "../components/ui/button";
@@ -9,6 +10,7 @@ import { EnderecoItem } from "./EnderecoItem";
 
 export function EnderecoLista({ onEnderecoUpdated }: EnderecoListProps) {
     const [enderecos, setEnderecos] = useState<Endereco[]>([]);
+    const navigate = useNavigate();
 
     const buscaEnderecos = async () => {
         const data = await getEnderecos();
@@ -47,6 +49,10 @@ export function EnderecoLista({ onEnderecoUpdated }: EnderecoListProps) {
         doc.save("enderecos.pdf");
     };
 
+    const handleExit = () => {
+        navigate("/login");
+    }
+
     return (
         <Card className="w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-4xl mx-auto my-2">
             <CardContent className="p-4">
@@ -71,6 +77,10 @@ export function EnderecoLista({ onEnderecoUpdated }: EnderecoListProps) {
                     <Button onClick={handlePrintPDF} className="custom-button">
                         Imprimir PDF
                     </Button>
+                    <Button onClick={handleExit} className="custom-button">
+                        Sair do Sistema
+                    </Button>
+
                 </div>
             </CardContent>
         </Card>

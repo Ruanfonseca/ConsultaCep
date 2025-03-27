@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate
 @Service
 class ApiViaCepService {
     private final String VIACEP_URL = "https://viacep.com.br/ws/%s/json/"
-    String regex = /^\d{8}$/
+    String regex = /^\d{8}$|^\d{5}-\d{3}$/
 
     /**
      * Consulta o CEP na API do ViaCEP

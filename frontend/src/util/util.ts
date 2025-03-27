@@ -20,6 +20,10 @@ export function isValidCPF(cpf: string): boolean {
 
     return digit1 === parseInt(cpf[9]) && digit2 === parseInt(cpf[10]);
 }
+export function isValidCEP(cep: string): boolean {
+    cep = cep.replace(/\D/g, "");
+    return /^[0-9]{8}$/.test(cep);
+}
 
 export function formatCPF(value: string) {
     return value
@@ -29,9 +33,16 @@ export function formatCPF(value: string) {
         .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
 }
 
+export function formatCEP(value: string) {
+    return value
+        .replace(/\D/g, "")
+        .replace(/^(\d{5})(\d{1,3})$/, "$1-$2"); // Formata para XXXXX-XXX
+}
+
+
 export function detectarTipoDado(dado: string) {
     const regexCPF = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/; // Formato: 000.000.000-00
-    const regexCEP = /^\d{8}$/;
+    const regexCEP = /^\d{8}$|^\d{5}-\d{3}$/;
     const regexNome = /^[a-zA-ZÀ-ÿ\s]+$/;
 
 
@@ -74,7 +85,9 @@ export function aplicarMascara(value: string) {
     const tipo = identificarTipo(value);
     if (tipo === 'cpf') {
         return aplicarMascaraCPF(value);
+    } else if (tipo === 'cep') {
+        return formatCEP(value);
     } else {
-        return value; // Se não for CPF nem CEP, retorna o valor sem máscara
+        return value
     }
 };
