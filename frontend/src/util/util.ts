@@ -38,19 +38,19 @@ export function formatCPF(value: string) {
 export function formatCEP(value: string) {
     return value
         .replace(/\D/g, "")
-        .replace(/^(\d{5})(\d{1,3})$/, "$1-$2");
+        .replace(/^(\d{5})(\d{1,3})$/, "$1-$2"); // Formata para XXXXX-XXX
 }
 
-
 export function detectarTipoDado(dado: string) {
-    const regexCPF = /^\d{11}$/;
-    const regexCEP = /^\d{8}$/;
+    const regexCPFComFormatacao = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/; // Formato: 000.000.000-00
+    const regexCPFSemFormatacao = /^\d{11}$/; // Formato sem formatação: 00000000000
+    const regexCEPComFormatacao = /^\d{5}-\d{3}$/;  // Formato com traço: 00000-000
+    const regexCEPSemFormatacao = /^\d{8}$/;  // Formato sem traço: 00000000
     const regexNome = /^[a-zA-ZÀ-ÿ\s]+$/;
 
-
-    if (regexCPF.test(dado)) {
+    if (regexCPFComFormatacao.test(dado) || regexCPFSemFormatacao.test(dado)) {
         return "cpf";
-    } else if (regexCEP.test(dado)) {
+    } else if (regexCEPComFormatacao.test(dado) || regexCEPSemFormatacao.test(dado)) {
         return "cep";
     } else if (regexNome.test(dado)) {
         return "nome";
@@ -58,6 +58,7 @@ export function detectarTipoDado(dado: string) {
         return "desconhecido";
     }
 };
+
 
 
 export function identificarTipo(dado: string) {
