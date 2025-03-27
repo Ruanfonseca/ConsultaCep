@@ -16,27 +16,41 @@ Tecnologias Utilizadas
 Backend
 
 Spring Boot: Framework Java usado para desenvolver a API de maneira ágil e eficiente. Oferece uma estrutura sólida para criar aplicações escaláveis e de fácil manutenção.
+
 Spring Data JPA: Ferramenta que facilita o acesso ao banco de dados, tornando as operações como CRUD (Create, Read, Update, Delete) mais simples e implementando a comunicação com o banco de dados Mysql de forma otimizada.
+
 Spring Validation: Tecnologia para validar os dados de entrada, garantindo que as informações recebidas pela API atendam aos critérios necessários antes de serem processadas.
+
 Lombok: Biblioteca Java que facilita a escrita de código, eliminando a necessidade de criar métodos como getters, setters, toString(), equals() e hashCode() manualmente.  
-Groovy: Linguagem de programação que complementa o código Java, proporcionando mais flexibilidade e concisão.
+
+Java + Groovy: Linguagem de programação que complementa o código Java, proporcionando mais flexibilidade e concisão.
 
 Frontend
 
 React: Biblioteca JavaScript usada para construir a interface do usuário, permitindo a criação de componentes reutilizáveis e interativos.
+
 React Query: Ferramenta que facilita o gerenciamento do estado da aplicação em relação às requisições HTTP, ajudando no controle de dados assíncronos e melhorando o desempenho.
+
 React Router DOM: Biblioteca para gerenciar a navegação entre diferentes páginas da aplicação, proporcionando uma navegação dinâmica e baseada em rotas.
+
 Shadcn UI: Conjunto de componentes UI para React que oferece uma interface moderna e acessível, otimizada para fácil uso e personalização.
+
 React Hook Form: Biblioteca que facilita o gerenciamento de formulários no React, garantindo validação de campos e envio seguro de dados.
+
 Axios: Biblioteca para fazer requisições HTTP de forma simples e eficiente, facilitando a comunicação com o backend.
+
 Vite: Ferramenta de build para desenvolvimento rápido e eficiente de aplicações front-end, otimizando a experiência de desenvolvimento.
 
 Infraestrutura
 
 Docker: Ferramenta que possibilita a criação de contêineres para empacotar a aplicação junto com suas dependências, garantindo a execução consistente em diferentes ambientes. É utilizada para facilitar o deploy e a configuração do sistema.
+
 CI/CD: Com a utilização do GitHub Actions, foi implementado um pipeline de CI/CD para atualizar automaticamente a imagem Docker do backend no Docker Hub e a build do frontend na Vercel a cada commit na branch principal.
+
 Vercel: Plataforma onde o frontend está hospedado.
+
 Render: Plataforma onde o backend está hospedado.
+
 Hostinger: O banco de dados está hospedado na nuvem da Hostinger.
 
 Banco de Dados
