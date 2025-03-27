@@ -82,6 +82,7 @@ a url da api para usar a local.
 
 
 Como utilizar o projeto em produção 
+O render coloca 50 segundos de latência nas requisições do plano gratuito,então, se as requisições estiverem um pouco lenta, é por conta disso.
 clique no link -> https://consulta-cep-rosy-mu.vercel.app
 login de acesso -> email : solutionsti@gmail.com / senha:Ttecnico2025
 
