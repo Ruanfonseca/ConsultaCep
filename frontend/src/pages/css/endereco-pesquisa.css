@@ -1,0 +1,68 @@
+.dialog-content {
+  max-width: 600px;
+  width: 90%;
+  padding: 24px;
+  background-color: #fff;
+  color: #333;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-endereco {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 16px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #fafafa;
+  padding: 12px;
+}
+
+.table-endereco {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.table-endereco th,
+.table-endereco td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.table-endereco th {
+  background-color: #f0f0f0;
+  color: #222;
+  font-weight: 600;
+}
+
+.table-endereco tr:hover {
+  background-color: #f9f9f9;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-gray-500 {
+  color: #6b7280;
+}
+
+.text-red-500 {
+  color: #dc2626;
+}
+
+.mt-4 {
+  margin-top: 16px;
+}

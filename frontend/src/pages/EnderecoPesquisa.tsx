@@ -1,7 +1,6 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import '../App.css';
 import { Button } from "../components/ui/button";
 import {
     Dialog,
@@ -14,6 +13,7 @@ import { Input } from "../components/ui/input";
 import { usePesquisaEndereco } from "../hook/hook";
 import { Endereco } from "../types/types";
 import { aplicarMascara } from "../util/util";
+import './css/endereco-pesquisa.css';
 
 export default function EnderecoPesquisa() {
     const { register, handleSubmit, watch, setValue } = useForm();

@@ -35,11 +35,19 @@ public class UsuarioService {
                         .map(this::convertToDTO)
                         .collect(Collectors.toList());
                 break;
+
             case "cep":
-                List<Usuario> usuariosPorCep = repository.findByCep(dado);
-                usuarioDTOList = usuariosPorCep.stream()
-                        .map(this::convertToDTO)
-                        .collect(Collectors.toList());
+                def viaCepService = new ApiViaCepService()
+
+                if(viaCepService.cepExiste(dado)){
+                    List<Usuario> usuariosPorCep = repository.findByCep(dado);
+                    usuarioDTOList = usuariosPorCep.stream()
+                            .map(this::convertToDTO)
+                            .collect(Collectors.toList());
+                }else{
+                   return null;
+                }
+
                 break;
             case "nome":
                 List<Usuario> usuariosPorNome = repository.findByNome(dado);

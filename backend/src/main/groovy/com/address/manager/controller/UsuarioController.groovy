@@ -25,6 +25,7 @@ public class UsuarioController {
 
     @GetMapping("/address")
     public List<UsuarioDTO> pesquisarEndereco(@RequestParam String dado, @RequestParam String tipo) {
+
         return service.pesquisarEndereco(dado, tipo)
     }
 
