@@ -1,0 +1,111 @@
+Mar 22, 2025
+Criando o repositório e a primeira versão do projeto 5a8a7c5
+----------------------------------------------------------------------------------
+Mar 24, 2025
+
+subindo a build do frontend para a vercel 06832c7
+
+Dando erro ao subir para vercel , não reconhece o vite build 585f54c
+
+ainda no mesmo erro c752e81
+
+Começando a utilizar o react-query c0d9a60
+
+criando mascara de cpf na mão , pois não foi possivel utilizar o input-mask por conta de incompatibilidade com react 18 f9b3f33
+
+criando componente para pesquisa por cep,cpf e nome , 
+desenvolvendo o backend com funções repository customizadas com sql, com o uso do cicd ,
+o processo de build e envio para a hospedagem é automatizado 6d97527
+
+corrigindo o jpql do backend e ambiguidade do controller dfc3226
+
+criando funções que interpretam o input de pesquisa e corrigindo problemas do backend fa9a187
+
+criando função para impressão de lista de endereço   53ad2db
+
+criando responsividade no app.tsx com css , e no backend corrigindo a entity user a4d6178
+
+Refatorando o código para português ,inicialmente havia escrito em inglês,porém no pdf de instruções não havia essa especificidade, 
+criando ligação com o banco de dados na nuvem,corrigindo a responsividade com css puro e
+criando uma função para imprimir dados da lista de endereços em um pdf  cafe2da
+
+fazendo o deploy do frontend na vercel e conectado com o backend da hospedagem fde913b
+
+
+corrigindo alguns erros do workflow ad12aea
+
+testando o workflow 1 12ffc07
+
+
+testando o workflow 6d37bf6
+
+testando o workflow 0cf2970
+
+criando um workflow com github actions para atualizar a imagem hospedada no dockerhub 6cea623
+------------------------------------------------------------------------------------------------
+Mar 25, 2025
+
+criando telas de login e cadastro , criando logica de autenticação com jwt no backend 82e6665
+
+corringindo responsividade do dialog com css e corrigindo a função que gera pdf d7ca555
+
+corrigindo erro no build do front a11bd91
+
+tentando corrigir o problema do cors com configuração no backend 13fbec1
+
+mudando a estratégia , mexendo no login controller 125d098
+
+tentando corrigir alterando o auth.ts 3a71475
+
+mudando a estratégia , mexendo no login controller 125d098
+
+corrigindo problema de cors a6e5905
+
+tentando corrigir o problema do cors com configuração no backend abd6f23
+
+tentando reescrever o auth.ts 3a71475
+
+corrigindo problema de cors d3d1b9e
+
+corrigindo problema de cors 609e9e6
+
+ainda corrigindo problema de cors e545615
+
+corrigindo problema de cors 10a6e06
+
+colocando a url de produção 13fbec1
+
+corrigindo erro no build do front a11bd91
+
+corringindo responsividade do dialog com css e corrigindo a função que gera pdf d7ca555
+
+criando telas de login e cadastro , criando logica de autenticação com jwt no backend d7ca555
+----------------------------------------------------------------------------------------------
+Mar 26,2025
+
+Criando histórico de commit 
+
+Update README.md4710f59
+
+Update README.md 5143710
+
+Create README.md d6775cd
+
+adicionando placehold em cep bea5380
+
+corrigindo problema no código e11fea6
+ 
+retirando as configurações do spring security dc31e42
+
+retrocedendo no uso do jwt,por conta de problemas de configurações para o spring compativel com a versão que estou usando 9172eb7
+
+refatorando doFilterInternal , para não interceptar todas as rotas 9abe875
+
+refatorando doFilterInternal , para não interceptar todas as rotas 2dc6f6b
+
+criando a função corsFilter no backend 7aae96f
+
+para tentar corrigir o erro 403 , reescrevi a classe SecurityConfig 265c52f
+
+mudando algumas configurações 1587643
+

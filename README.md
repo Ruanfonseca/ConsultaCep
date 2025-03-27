@@ -23,7 +23,7 @@ Spring Validation: Tecnologia para validar os dados de entrada, garantindo que a
 
 Lombok: Biblioteca Java que facilita a escrita de código, eliminando a necessidade de criar métodos como getters, setters, toString(), equals() e hashCode() manualmente.  
 
-Java + Groovy: Linguagem de programação que complementa o código Java, proporcionando mais flexibilidade e concisão.
+java + Groovy: Linguagem de programação que complementa o código Java, proporcionando mais flexibilidade e concisão.
 
 Frontend
 
@@ -41,6 +41,7 @@ Axios: Biblioteca para fazer requisições HTTP de forma simples e eficiente, fa
 
 Vite: Ferramenta de build para desenvolvimento rápido e eficiente de aplicações front-end, otimizando a experiência de desenvolvimento.
 
+
 Infraestrutura
 
 Docker: Ferramenta que possibilita a criação de contêineres para empacotar a aplicação junto com suas dependências, garantindo a execução consistente em diferentes ambientes. É utilizada para facilitar o deploy e a configuração do sistema.
@@ -53,6 +54,7 @@ Render: Plataforma onde o backend está hospedado.
 
 Hostinger: O banco de dados está hospedado na nuvem da Hostinger.
 
+
 Banco de Dados
 
 MySQL: Sistema de gerenciamento de banco de dados relacional utilizado para armazenar as informações dos usuários de maneira segura e escalável.
@@ -60,6 +62,7 @@ MySQL: Sistema de gerenciamento de banco de dados relacional utilizado para arma
 Essas tecnologias, integradas, proporcionam uma solução poderosa para o gerenciamento de usuários, com uma API otimizada no backend, uma interface interativa e responsiva no frontend, e um banco de dados relacional de alto desempenho, garantindo eficiência e escalabilidade.
 
 Como Rodar o Projeto Localmente
+
 Para rodar o projeto localmente é necessario utilizar ou instalar o java na versão 
 ![image](https://github.com/user-attachments/assets/2182e6ba-ce48-4575-bc49-591776b63ba9)
 
@@ -69,8 +72,11 @@ e o groovy na versão
 e clone o backend em sua maquina , durante o desenvolvimento foi utilizado o intellij como IDE.
 
 Para utilizar a imagem do backend basta fazer um 
-1)docker pull (docker pull ruanfonseca2023/consulta-cep:bea5380f8cfdddaa682b39ee4022b8d51c198093) ;
+
+1)docker pull (docker pull ruanfonseca2023/consulta-cep:bea5380f8cfdddaa682b39ee4022b8d51c198093) 
+
 2)docker build -t nome-da-imagem .
+
 3)docker run -d -p 8080:8080 nome-da-imagem
 
 
@@ -82,8 +88,10 @@ a url da api para usar a local.
 
 
 Como utilizar o projeto em produção 
-O render coloca 50 segundos de latência nas requisições do plano gratuito,então, se as requisições estiverem um pouco lenta, é por conta disso.
+O render em seu plano gratuito coloca uma latencia 50 segundos a cada requisição, então , se a requisição demorar um é por conta dessa regra da hospedagem.
+
 clique no link -> https://consulta-cep-rosy-mu.vercel.app
+
 login de acesso -> email : solutionsti@gmail.com / senha:Ttecnico2025
 
 
