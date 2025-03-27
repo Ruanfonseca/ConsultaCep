@@ -87,21 +87,25 @@ export function EnderecoItem({ Endereco, onEnderecoUpdated }: EnderecoItemProps)
                     />
 
                     <div className="col-span-2">
+                        <label className="color: black;">Rua</label>
                         <Input placeholder="Logradouro" {...register("rua")} disabled />
                         {errors.rua && <span className="error">{errors.rua.message}</span>}
                     </div>
 
                     <div className="col-span-2 sm:col-span-1">
+                        <label className="color: black;">Bairro</label>
                         <Input placeholder="Bairro" {...register("bairro")} disabled />
                         {errors.bairro && <span className="error">{errors.bairro.message}</span>}
                     </div>
 
                     <div className="col-span-2 sm:col-span-1">
+                        <label className="color: black;">Cidade</label>
                         <Input placeholder="Cidade" {...register("cidade")} disabled />
                         {errors.cidade && <span className="error">{errors.cidade.message}</span>}
                     </div>
 
                     <div className="col-span-2 sm:col-span-1">
+                        <label className="color: black;">Estado</label>
                         <Input placeholder="Estado" {...register("estado")} disabled />
                         {errors.estado && <span className="error">{errors.estado.message}</span>}
                     </div>
